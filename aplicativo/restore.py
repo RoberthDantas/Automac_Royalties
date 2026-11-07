@@ -38,10 +38,10 @@ def restore(path):
         moved=[];installed=[]
         try:
             for child in root.iterdir():
-                if child.name not in ('backups','logs','runtime.lock','collection.lock'):
+                if child.name not in ('backups','logs') and child.suffix!='.lock':
                     shutil.move(str(child),str(rollback/child.name));moved.append(child.name)
             for child in staging.iterdir():
-                if child.name in ('backups','logs','runtime.lock','collection.lock'):continue
+                if child.name in ('backups','logs') or child.suffix=='.lock':continue
                 shutil.move(str(child),str(root/child.name));installed.append(child.name)
         except Exception:
             for name in installed:

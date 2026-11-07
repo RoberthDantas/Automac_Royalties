@@ -134,3 +134,16 @@ class RecoverTests(Base):
         call_command('recuperar_exclusao', numero=n, stdout=StringIO())
         self.assertTrue(Opportunity.objects.filter(pk=o.pk, title='Volta').exists())
         self.assertTrue(Activity.objects.filter(opportunity_id=o.pk, text='nota antiga').exists())
+
+
+class BackupLockTests(TestCase):
+    def test_backup_skips_all_lock_files(self):
+        import zipfile
+        from .backup import create_backup
+        for name in ('runtime.lock', 'scheduler.lock', 'dispatch.lock', 'collection.lock'):
+            (settings.DATA_DIR / name).write_bytes(b'0')
+        dest = create_backup()
+        with zipfile.ZipFile(dest) as z:
+            self.assertFalse([n for n in z.namelist() if n.endswith('.lock')])
+            self.assertIn('cartogeo.sqlite3', z.namelist())
+        dest.unlink()

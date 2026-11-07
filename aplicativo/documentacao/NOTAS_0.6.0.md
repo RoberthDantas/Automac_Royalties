@@ -24,7 +24,12 @@ migração (datas de mudança de etapa e de revisão de sinais); o app faz backu
   geoportal e base cartográfica. Nos 2.700 editais guardados, entraram 2 a mais, ambos do perfil, sem ruído novo.
 - **Ferramentas do administrador:** `05_ATUALIZAR.bat` (atualiza uma instalação sem tocar nos dados),
   `aplicativo\GERAR_VERSAO.bat` (testa e empacota uma versão), guia `documentacao\ADMINISTRADOR.md` e repositório Git.
-- Testes: 55, todos passando.
+- **Instalador no Windows** (encontrado na instalação real em 07/11): o `01_INSTALAR.bat` confiava no código de saída
+  do `py`, e o gerenciador novo do Python devolve "sucesso" mesmo sem a versão pedida; agora confere pela saída e, se
+  não achar Python, lista os que existem. E o backup automático antes de migrar a base falhava no Windows ao tentar ler
+  as travas (`scheduler.lock`, `dispatch.lock`) que o próprio app mantém abertas; backup e restauração agora ignoram
+  todos os arquivos `.lock`. Sem essa correção, qualquer atualização com migração parava no Windows.
+- Testes: 56, todos passando.
 
 ## Como atualizar uma instalação em uso
 

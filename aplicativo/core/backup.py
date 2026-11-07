@@ -7,6 +7,7 @@ from datetime import datetime
 from django.conf import settings
 
 def create_backup():
+    # Travas (*.lock) ficam de fora: no Windows o próprio app as mantém bloqueadas e a leitura falha (0.6.0).
     root=settings.DATA_DIR
     folder=root/'backups';folder.mkdir(exist_ok=True)
     dest=folder/('cartogeo-'+datetime.now().strftime('%Y%m%d-%H%M%S-%f')+'.zip')
@@ -20,6 +21,6 @@ def create_backup():
             z.write(db,'cartogeo.sqlite3')
             for path in root.rglob('*'):
                 relative=path.relative_to(root)
-                if path.is_file() and not path.is_symlink() and relative.parts[0] not in ('backups','logs') and path.name not in ('cartogeo.sqlite3','cartogeo.sqlite3-wal','cartogeo.sqlite3-shm','cartogeo.sqlite3-journal','runtime.lock','collection.lock'):
+                if path.is_file() and not path.is_symlink() and relative.parts[0] not in ('backups','logs') and path.name not in ('cartogeo.sqlite3','cartogeo.sqlite3-wal','cartogeo.sqlite3-shm','cartogeo.sqlite3-journal') and path.suffix!='.lock':
                     z.write(path,str(relative))
     return dest
