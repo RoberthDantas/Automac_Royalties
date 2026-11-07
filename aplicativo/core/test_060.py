@@ -120,3 +120,17 @@ class TlsAndTermsTests(TestCase):
         self.assertTrue(matched_terms('Estudo de Viabilidade Técnica, Ambiental e Econômica voltado ao controle da erosão', terms))
         self.assertTrue(matched_terms('Elaboração de diagnósticos socioambientais e planos de gestão ambiental', terms))
         self.assertFalse(matched_terms('Aquisição de material de limpeza e manutenção ambiental de praças', terms))
+
+
+class RecoverTests(Base):
+    def test_recover_deleted_opportunity(self):
+        from io import StringIO
+        from django.core.management import call_command
+        o = Opportunity.objects.create(title='Volta', organization=self.org, front='royalties', next_action='x')
+        Activity.objects.create(opportunity=o, kind='nota', text='nota antiga')
+        self.client.post(f'/oportunidades/{o.pk}/excluir/', {'confirmar': 'sim'})
+        out = StringIO(); call_command('recuperar_exclusao', stdout=out)
+        n = len(out.getvalue().strip().splitlines()) - 1
+        call_command('recuperar_exclusao', numero=n, stdout=StringIO())
+        self.assertTrue(Opportunity.objects.filter(pk=o.pk, title='Volta').exists())
+        self.assertTrue(Activity.objects.filter(opportunity_id=o.pk, text='nota antiga').exists())

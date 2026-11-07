@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-echo CARTOGEO 0.5.3 - INSTALACAO
+echo CARTOGEO 0.6.0 - INSTALACAO
 echo Execute somente depois de extrair o ZIP para uma pasta nova.
 py -3.14 --version >nul 2>&1
 if not errorlevel 1 goto py314
