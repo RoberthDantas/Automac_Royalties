@@ -7,6 +7,7 @@ import ipaddress
 import json
 import re
 import socket
+import ssl
 import time
 import unicodedata
 import urllib.error
@@ -67,9 +68,24 @@ def collection_progress(job,text):
     job.summary=text
     job.save(update_fields=['summary'])
 
+def tls_handshake_failed(exc):
+    reason=exc.reason if isinstance(exc,urllib.error.URLError) else exc
+    return isinstance(reason,ssl.SSLError) and not isinstance(reason,ssl.SSLCertVerificationError)
+
+def compat_tls_context():
+    """0.6.0: perfil TLS de compatibilidade para servidores que recusam o aperto de mão padrão do Python
+    (ex.: SSLV3_ALERT_HANDSHAKE_FAILURE no Querido Diário). O certificado continua sendo verificado."""
+    ctx=ssl.create_default_context()
+    ctx.minimum_version=ssl.TLSVersion.TLSv1_2
+    try:ctx.set_ciphers('DEFAULT:@SECLEVEL=1')
+    except ssl.SSLError:pass
+    ctx.options|=getattr(ssl,'OP_LEGACY_SERVER_CONNECT',0x4)
+    return ctx
+
 def fetch(url,job,extension='bin',*,timeout=35,attempts=3,progress=''):
     validate_remote(url)
     opener=urllib.request.build_opener(PublicRedirect())
+    tls_mode='padrão'
     req=urllib.request.Request(url,headers={'User-Agent':'CartoGeoLocal/0.4 (public data research)', 'Accept-Encoding':'gzip'})
     started_at=timezone.now().isoformat()
     for attempt in range(attempts):
@@ -83,7 +99,20 @@ def fetch(url,job,extension='bin',*,timeout=35,attempts=3,progress=''):
                 raw=response.read(MAX_BYTES+1)
             break
         except (urllib.error.URLError,TimeoutError,ConnectionError,http.client.IncompleteRead) as exc:
-            if not network_retryable(exc):raise
+            if tls_handshake_failed(exc) and tls_mode=='padrão':
+                # Uma nova tentativa imediata com o perfil de compatibilidade; não consome tentativas.
+                opener=urllib.request.build_opener(PublicRedirect(),urllib.request.HTTPSHandler(context=compat_tls_context()))
+                tls_mode='compatibilidade'
+                try:
+                    with opener.open(req,timeout=timeout) as response:
+                        response_status=response.status
+                        response_url=response.geturl()
+                        response_headers={k:response.headers.get(k) for k in ('Content-Type','Content-Encoding','Date','ETag','Last-Modified') if response.headers.get(k)}
+                        raw=response.read(MAX_BYTES+1)
+                    break
+                except (urllib.error.URLError,TimeoutError,ConnectionError,http.client.IncompleteRead) as exc2:
+                    exc=exc2
+            if not network_retryable(exc):raise exc
             detail=f'HTTP {exc.code}' if isinstance(exc,urllib.error.HTTPError) else type(exc).__name__
             if attempt+1>=attempts:
                 raise FetchUnavailable(f'{progress or "Consulta"} Sem resposta completa após {attempts} tentativas ({detail}). URL: {url}') from exc
@@ -121,7 +150,7 @@ def fetch(url,job,extension='bin',*,timeout=35,attempts=3,progress=''):
                 'started_at_utc':started_at,'received_at_utc':received_at,'clock':'relógio local, sem carimbo de tempo confiável',
                 'received_body_file':body_name,'received_body_sha256':body_sha,'received_body_size':len(received_body),
                 'transformation':'gzip descompactado' if received_body[:2]==b'\x1f\x8b' else 'sem transformação',
-                'scope':'corpo HTTP recebido, não inclui sessão TLS nem cabeçalhos brutos', 'collector_version':settings.VERSION}
+                'scope':'corpo HTTP recebido, não inclui sessão TLS nem cabeçalhos brutos', 'tls':tls_mode, 'collector_version':settings.VERSION}
     snap=Snapshot.objects.create(job=job,url=url,filename=filename,sha256=sha,size=len(raw),provenance=provenance)
     return raw,snap
 

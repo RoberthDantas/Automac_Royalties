@@ -89,7 +89,8 @@ def edit(request,entity,pk=None):
                 Activity.objects.create(opportunity=saved,kind='sistema',author=request.user.username,text=('Criada oportunidade.' if not pk else 'Campos alterados: '+', '.join(form.fields[x].label or x for x in form.changed_data)))
         messages.success(request,'Registro salvo.')
         return redirect('opportunity_detail',pk=saved.pk) if entity=='oportunidades' else redirect('listing',entity=entity)
-    return render(request,'core/form.html',{'title':('Editar ' if pk else 'Cadastrar ')+label.lower(),'form':form,'back':f'/{entity}/'})
+    return render(request,'core/form.html',{'title':('Editar ' if pk else 'Cadastrar ')+label.lower(),'form':form,'back':f'/{entity}/',
+                  'delete_url':f'/{entity}/{pk}/excluir/' if pk else ''})
 
 @login_required
 def opportunity_detail(request,pk):

@@ -201,20 +201,26 @@ def quarter_metrics(today=None):
     week_start = today - timedelta(days=today.weekday())
     q_start, q_end = quarter_bounds(today)
     acts = Activity.objects.filter(created_at__date__gte=q_start, created_at__date__lte=q_end)
-    proposals = Opportunity.objects.filter(Q(stage__in=ADVANCED_STAGES) | Q(activities__kind='proposta',
-                                           activities__created_at__date__gte=q_start)).distinct().count()
-    qualified = Contact.objects.filter(verified_on__isnull=False, do_not_contact=False).exclude(organization__kind='cartorio').count()
-    triaged = Signal.objects.filter(source_type='pncp', status__in=['descartado', 'convertido']).count()
+    # 0.6.0: todas as metas contam só o trimestre corrente (antes, propostas, contatos e editais eram acumulados).
+    proposals = Opportunity.objects.filter(Q(stage__in=ADVANCED_STAGES, stage_changed_at__date__gte=q_start, stage_changed_at__date__lte=q_end) |
+                                           Q(activities__kind='proposta', activities__created_at__date__gte=q_start,
+                                             activities__created_at__date__lte=q_end)).distinct().count()
+    signed = Opportunity.objects.filter(stage__in=SIGNED_STAGES, stage_changed_at__date__gte=q_start, stage_changed_at__date__lte=q_end).count()
+    contacts = Contact.objects.filter(do_not_contact=False).exclude(organization__kind='cartorio')
+    qualified = contacts.filter(verified_on__gte=q_start, verified_on__lte=q_end).count()
+    qualified_total = contacts.filter(verified_on__isnull=False).count()
+    triaged = Signal.objects.filter(source_type='pncp', status__in=['descartado', 'convertido'],
+                                    reviewed_at__date__gte=q_start, reviewed_at__date__lte=q_end).count()
     scanned = 0
     last_complete = CollectionJob.objects.filter(source='pncp_capacidades', status='ok').first()
     if last_complete:
         scanned = sum(int(v.get('scanned', 0)) for v in (last_complete.parameters.get('progress') or {}).values() if isinstance(v, dict))
     metrics = [
-        ('Contratos assinados', Opportunity.objects.filter(stage__in=SIGNED_STAGES).count(), 3, 'Oportunidades em Contratada, Em execução ou Concluída.'),
-        ('Propostas enviadas', proposals, 15, 'Oportunidades com proposta registrada ou etapa a partir de Proposta enviada.'),
-        ('Contatos qualificados na base', qualified, 120, 'Contatos com data de conferência, exceto cartórios e bloqueados.'),
-        ('Reuniões realizadas', acts.filter(kind='reuniao').count(), 20, 'Registros do tipo Reunião no histórico das oportunidades.'),
-        ('Editais triados por você', triaged, 200, 'Sinais do PNCP revisados (descartados ou convertidos).'),
+        ('Contratos assinados', signed, 3, 'Oportunidades que entraram em Contratada, Em execução ou Concluída neste trimestre.'),
+        ('Propostas enviadas', proposals, 15, 'Oportunidades com proposta registrada ou que passaram de Proposta enviada neste trimestre.'),
+        ('Contatos qualificados', qualified, 120, f'Contatos conferidos neste trimestre, exceto cartórios e bloqueados. Na base, ao todo: {qualified_total}.'),
+        ('Reuniões realizadas', acts.filter(kind='reuniao').count(), 20, 'Registros do tipo Reunião neste trimestre.'),
+        ('Editais triados por você', triaged, 200, 'Sinais do PNCP descartados ou convertidos neste trimestre.'),
     ]
     rows = [{'label': l, 'value': v, 'goal': g, 'help': h, 'pct': min(100, round(v * 100 / g)) if g else 0} for l, v, g, h in metrics]
     week = acts.filter(kind='contato', created_at__date__gte=week_start).count()

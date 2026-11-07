@@ -3,6 +3,7 @@ from django.contrib.auth import views as auth
 from django.views.static import serve
 from django.conf import settings
 from core import views as v
+from core import admin_views as adm
 from core import well_views as w
 from core import planning_views as p
 from core import monitor_views as m
@@ -63,6 +64,8 @@ urlpatterns=[
  path('backup/',v.backup_page,name='backup'),path('backup/baixar/',v.download_backup,name='download_backup'),
  path('exportar/oportunidades/',v.export_csv,name='export_csv'),path('ajuda/',v.help_page,name='help'),
  path('static/<path:path>',serve,{'document_root':settings.STATIC_ROOT}),
+ path('usuarios/',adm.users,name='users'),path('usuarios/nova/',adm.user_new,name='user_new'),path('usuarios/<int:pk>/',adm.user_edit,name='user_edit'),
+ path('<str:entity>/<int:pk>/excluir/',adm.delete_record,name='delete_record'),
  path('<str:entity>/novo/',v.edit,name='new'),path('<str:entity>/<int:pk>/editar/',v.edit,name='edit'),
  path('<str:entity>/',v.listing,name='listing'),
 ]

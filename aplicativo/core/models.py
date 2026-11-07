@@ -5,6 +5,26 @@ from django.core.validators import MinValueValidator, MaxValueValidator, URLVali
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
+class TracksChange:
+    """0.6.0: grava a data em que um campo mudou (etapa da oportunidade, revisão do sinal), para as metas do trimestre."""
+    track_field = ''
+    stamp_field = ''
+    @classmethod
+    def from_db(cls, db, field_names, values):
+        inst = super().from_db(db, field_names, values)
+        inst._loaded_tracked = getattr(inst, cls.track_field, None) if cls.track_field in field_names else None
+        return inst
+    def stamp_value(self):
+        return timezone.now()
+    def save(self, *args, **kwargs):
+        current = getattr(self, self.track_field)
+        if self._state.adding or getattr(self, '_loaded_tracked', None) != current:
+            setattr(self, self.stamp_field, self.stamp_value())
+            if kwargs.get('update_fields') is not None:
+                kwargs['update_fields'] = list(set(kwargs['update_fields']) | {self.stamp_field})
+        super().save(*args, **kwargs)
+        self._loaded_tracked = current
+
 FRONTS = [('royalties','Royalties e águas territoriais'), ('risco','Inteligência territorial e risco'),
           ('rural','Georreferenciamento rural e SIGEF'), ('urbano','REURB e cadastro urbano'),
           ('cursos','Capacitação'), ('marinha','Terrenos de marinha'), ('apoio','Apoio técnico a empresas e escritórios')]
@@ -100,7 +120,11 @@ class Snapshot(models.Model):
     provenance = models.JSONField(default=dict, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class Signal(models.Model):
+class Signal(TracksChange, models.Model):
+    track_field = 'status'
+    stamp_field = 'reviewed_at'
+    def stamp_value(self):
+        return None if self.status == 'novo' else timezone.now()
     source_type = models.CharField(max_length=20, default='manual', db_index=True)
     publication_date = models.DateField(null=True, blank=True, db_index=True)
     last_seen_at = models.DateTimeField(null=True, blank=True)
@@ -116,6 +140,7 @@ class Signal(models.Model):
     status = models.CharField(max_length=20,default='novo',choices=[('novo','A revisar'),('descartado','Descartado'),('convertido','Em acompanhamento')])
     review_note = models.TextField(blank=True)
     job = models.ForeignKey(CollectionJob,on_delete=models.SET_NULL,null=True,blank=True)
+    reviewed_at = models.DateTimeField('Revisado em', null=True, blank=True)
     collected_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     class Meta: ordering=['-updated_at']
@@ -170,7 +195,9 @@ class WellProduction(models.Model):
         ordering=['-period','name']
         constraints=[models.UniqueConstraint(fields=['uf','name_key','period'],name='well_production_period')]
 
-class Opportunity(models.Model):
+class Opportunity(TracksChange, models.Model):
+    track_field = 'stage'
+    stamp_field = 'stage_changed_at'
     title = models.CharField('Oportunidade',max_length=240)
     organization = models.ForeignKey(Organization,verbose_name='Organização',on_delete=models.PROTECT,related_name='opportunities')
     signal = models.OneToOneField(Signal,on_delete=models.SET_NULL,null=True,blank=True,related_name='opportunity')
@@ -191,6 +218,7 @@ class Opportunity(models.Model):
     next_date = models.DateField('Prazo da próxima ação',null=True,blank=True)
     blockers = models.TextField('O que falta para avançar',blank=True)
     outcome_note = models.TextField('Justificativa de suspensão, perda ou conclusão',blank=True)
+    stage_changed_at = models.DateTimeField('Etapa alterada em', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     class Meta: ordering=['priority','next_date','title']
