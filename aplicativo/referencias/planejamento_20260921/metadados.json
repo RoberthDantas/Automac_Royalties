@@ -1,0 +1,19 @@
+{
+  "consulta": "2026-09-21",
+  "linhas": {
+    "feicoes": 279,
+    "src_original": "EPSG:4674",
+    "src_mapa": "EPSG:4326",
+    "tratamento": "Conversão de formato com pyshp e transformação pyproj always_xy. Traçados e atributos originais preservados; nenhuma nova ortogonal calculada. Aproximação de datum para visualização regional, sem precisão cadastral.",
+    "vinculo_municipal": "Não atribuído automaticamente: camada não possui código IBGE/UF e inclui divisas e limites nacionais."
+  },
+  "censo_2010": {
+    "arquivo": "UFs_Municipios_Censo2010.zip",
+    "conteudo": "Nove tabelas XLS e índice HTML sobre aglomerados subnormais — Censo 2010. Base histórica, sem malha municipal. Não carregada como situação atual."
+  },
+  "imagens": {
+    "publicacao": null,
+    "recebidas_em": "2026-09-21",
+    "portaria": "009/2025, transcrição do folheto, texto normativo não verificado."
+  }
+}

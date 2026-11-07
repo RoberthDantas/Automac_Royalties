@@ -1,0 +1,50 @@
+﻿CORREÇÃO PNCP — CARTOGEO LOCAL — 18/09/2026
+
+O QUE MUDA
+- PNCP: limite de inatividade da conexão de 60 segundos por tentativa.
+- Até 3 tentativas por página em caso de timeout, interrupção de conexão,
+  leitura incompleta e respostas HTTP temporárias.
+- Pausa progressiva entre tentativas, respeitando Retry-After da fonte.
+- A tela da execução mostra UF, página, tentativa e páginas já concluídas.
+- Se as tentativas se esgotarem, a coleta informa qual página falhou.
+- A correção dos 13 nomes ANP está incluída e permanece ativa.
+
+COMO APLICAR
+1. Aguarde qualquer coleta terminar. Encerre o programa com Ctrl+C na
+   janela preta. Fechar apenas o Chrome não encerra o programa.
+2. Extraia este ZIP com o botão direito → Extrair tudo.
+3. Copie a pasta core extraída para dentro da pasta do seu aplicativo,
+   a mesma que contém INICIAR.bat e manage.py.
+4. Aceite mesclar as pastas e substituir os arquivos solicitados.
+   Não apague a pasta core existente.
+5. Abra INICIAR.bat.
+6. Em Fontes e coletas, escolha PNCP — oportunidades por objeto,
+   UF CE, Propostas abertas — próximos 30 dias.
+7. Clique em Buscar na fonte oficial. Acompanhe a tela da execução;
+   ela atualiza automaticamente. Uma página lenta pode levar alguns
+   minutos, considerando as tentativas.
+
+COMO CONFERIR
+Durante a coleta, deve aparecer “PNCP CE: página 1” e “Tentativa 1/3”.
+Se o PNCP responder, a coleta seguirá pelas páginas. Se atingir o limite
+configurado, aparecerá PARCIAL; isso não significa cobertura completa.
+Se esgotar as tentativas, envie a mensagem completa da nova execução.
+
+DADOS PRESERVADOS
+Este pacote contém apenas código e instruções. Não contém banco de dados.
+Royalties, cartórios, contatos, anotações e fontes anteriores não são
+substituídos. Não é preciso refazer as importações IBGE, ANP ou cartórios.
+Ao repetir uma consulta, ela começa na página 1. Sinais existentes são
+reconciliados por identificador PNCP, preservando status e observações.
+Uma resposta incompleta por timeout não é salva como arquivo válido.
+
+VALIDAÇÃO
+16 testes automatizados passaram, incluindo:
+- timeout durante leitura seguido de sucesso;
+- timeout repetido sem geração de arquivo incompleto;
+- paginação após recuperação;
+- preservação de fonte e revisão comercial quando a página seguinte falha;
+- limites de repetição e tratamento de erros HTTP;
+- correspondências ANP e fluxos existentes do aplicativo.
+No teste direto desta preparação, a primeira página CE com 50 registros
+não respondeu no prazo. A atualização não garante disponibilidade do PNCP.

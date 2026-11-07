@@ -1,0 +1,48 @@
+[
+  {
+    "key": "cabedelo:habita:nova-morada:2024-03-21",
+    "kind": "fundiaria",
+    "title": "Habita Legal — Nova Morada / Portal do Poço",
+    "date": "2024-03-21",
+    "quantity": 15,
+    "quantity_unit": "documentos na entrega relatada",
+    "url": "https://cabedelo.pb.gov.br/habita-legal-prefeitura-de-cabedelo-entrega-termos-de-posse-no-bairro-do-portal-do-poco-e-regularizada-mais-15-casas-na-comunidade-nova-morada/",
+    "reason": "Notícia de 21/03/2024 relata entrega de 15 documentos de regularização na comunidade Nova Morada, Portal do Poço. Evidência histórica de atuação municipal; demanda atual e contratação não confirmadas.",
+    "next": "Verificar continuidade do programa, núcleos pendentes e equipe responsável em fonte atual.",
+    "blockers": "Não há edital ou demanda atual comprovados. Natureza e etapa registral exigem exame dos documentos; notícia usa termos distintos.",
+    "sector": "Secretaria de Planejamento Urbano e Habitação (setor citado em 2024; confirmar estrutura atual)",
+    "locality": "Nova Morada / Portal do Poço"
+  },
+  {
+    "key": "cabedelo:habita:jacare:2022-08-11",
+    "kind": "fundiaria",
+    "title": "Habita Legal — Oceania VI / Jacaré",
+    "date": "2022-08-11",
+    "quantity": 84,
+    "quantity_unit": "documentos de titularidade relatados",
+    "url": "https://cabedelo.pb.gov.br/habita-legal-prefeitura-de-cabedelo-entrega-documentacao-e-regulariza-mais-de-80-de-casas-populares-no-bairro-do-jacare/",
+    "reason": "Notícia de 11/08/2022 informa entrega de 84 documentos de titularidade em Oceania VI, Jacaré. Evidência histórica de regularização; não é uma oportunidade de contratação comprovada.",
+    "next": "Apurar situação atual e eventual necessidade de cadastro, levantamento e apoio técnico.",
+    "blockers": "Não inferir estoque atual de imóveis irregulares a partir de estimativas de 2022. Não somar totais históricos de programas.",
+    "sector": "Secretaria de Planejamento Urbano e Habitação (setor citado em 2022; confirmar estrutura atual)",
+    "locality": "Oceania VI / Jacaré"
+  },
+  {
+    "key": "cabedelo:casa-legal:folheto-recebido-20260921",
+    "kind": "cadastral",
+    "title": "Casa Legal — atualização cadastral municipal",
+    "date": null,
+    "quantity": null,
+    "quantity_unit": "",
+    "url": "https://cabedelo.pb.gov.br/",
+    "reason": "Duas fotografias fornecidas pelo usuário mostram material Casa Legal da Secretaria da Receita de Cabedelo, sobre atualização cadastral de imóveis e possuidores. Data de publicação não identificada. O folheto cita a Portaria 009/2025, ainda não conferida no ato original. Cadastro municipal e titulação registral devem ser acompanhados separadamente.",
+    "next": "Localizar a Portaria 009/2025 e confirmar vigência, alcance e fluxo administrativo do programa.",
+    "blockers": "Fotografias são a evidência primária; o site é apenas referência institucional. Não afirmar que inscrição cadastral confere propriedade.",
+    "sector": "Secretaria da Receita (identificação no folheto; confirmar programa atual)",
+    "locality": "Cabedelo — abrangência do programa a confirmar",
+    "attachments": [
+      "casa_legal_interior.jpeg",
+      "casa_legal_capa.jpeg"
+    ]
+  }
+]

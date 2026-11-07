@@ -1,0 +1,37 @@
+[
+  {
+    "uf": "PB",
+    "municipios": 223,
+    "catalogo": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/25/municipios",
+    "malha": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/25?formato=application/vnd.geo+json&qualidade=intermediaria&intrarregiao=municipio",
+    "sha256_malha": "16f6cb8495460d850a7d58dd607c787fd405610721555e8dfc25ed931c3190ad"
+  },
+  {
+    "uf": "RN",
+    "municipios": 167,
+    "catalogo": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios",
+    "malha": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/24?formato=application/vnd.geo+json&qualidade=intermediaria&intrarregiao=municipio",
+    "sha256_malha": "68fd860f10672e0e4ec0006bbd417a93b2692ee99201a5d9db2978ff2fd6946e"
+  },
+  {
+    "uf": "CE",
+    "municipios": 184,
+    "catalogo": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/23/municipios",
+    "malha": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/23?formato=application/vnd.geo+json&qualidade=intermediaria&intrarregiao=municipio",
+    "sha256_malha": "f292f3fc5fd5aba049cb153800055e9e07767af55b1afe1c15977613f9662d85"
+  },
+  {
+    "uf": "SE",
+    "municipios": 75,
+    "catalogo": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/28/municipios",
+    "malha": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/28?formato=application/vnd.geo+json&qualidade=intermediaria&intrarregiao=municipio",
+    "sha256_malha": "ed4ec46239674003552c2a99e016968696ef8b6979dda3cf6042a749475ef2c5"
+  },
+  {
+    "uf": "AL",
+    "municipios": 102,
+    "catalogo": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/27/municipios",
+    "malha": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/27?formato=application/vnd.geo+json&qualidade=intermediaria&intrarregiao=municipio",
+    "sha256_malha": "ab1b1e740bb633ccc58906c3bdd43965d9556336bda73152a5312134cd4f3fee"
+  }
+]

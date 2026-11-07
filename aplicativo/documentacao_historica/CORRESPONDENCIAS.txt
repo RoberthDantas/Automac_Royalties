@@ -1,0 +1,28 @@
+﻿CORRESPONDÊNCIAS ANP → IBGE
+Cadastro atual consultado em 18/09/2026.
+Cada entrada exige correspondência exata de UF, nome atual e código na base IBGE local.
+
+ITAPAGE-CE → Itapajé/CE — 2306306
+CAMPO DE SANTANA-PB → Tacima/PB — 2516409
+IGUARACY-PB → Igaracy/PB — 2502607
+SANTAREM-PB → Joca Claudino/PB — 2513653
+SAO DOMINGOS DE POMBAL-PB → São Domingos/PB — 2513968
+SERIDO-PB → São Vicente do Seridó/PB — 2515401
+ACU-RN → Assú/RN — 2400208
+ARES-RN → Arez/RN — 2401206
+AUGUSTO SEVERO-RN → Campo Grande/RN — 2401305
+PRESIDENTE JUSCELINO-RN → Serra Caiada/RN — 2410306
+SAO MIGUEL DE TOUROS-RN → São Miguel do Gostoso/RN — 2412559
+AMPARO DE SAO FRANCISCO-SE → Amparo do São Francisco/SE — 2800100
+GRACHO CARDOSO-SE → Graccho Cardoso/SE — 2802601
+
+FONTES DO CADASTRO ATUAL (IBGE)
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/25/municipios
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/24/municipios
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/23/municipios
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/28/municipios
+https://servicodados.ibge.gov.br/api/v1/localidades/estados/27/municipios
+
+ORIGEM ANP USADA NA VERIFICAÇÃO
+https://www.gov.br/anp/pt-br/assuntos/royalties-e-outras-participacoes/arq-royalties/tabelas-contendo-o-valor-mensal-dos-royalties-dos-beneficiarios/2026/royalties-tabelas-jan-dez-2026_03.xlsx
+SHA-256: a1a3d1c1e27e854644b009066f90ac1f496d8e7295b0ec8022e97024449ae12a

@@ -1,0 +1,1 @@
+{% extends "core/base.html" %}{% load cg %}{% block content %}<p>{{ intro }}</p><div class="card"><form method="post">{% csrf_token %}{{ form.as_p }}<button>Salvar registro</button><a class="button secondary" href="{{ back }}">Voltar</a></form></div>{% endblock %}

@@ -1,0 +1,1 @@
+<div class="pagination">{% if records.has_previous %}<a href="{% querystring page=records.previous_page_number %}">← Anterior</a>{% endif %} · Página {{ records.number }} de {{ records.paginator.num_pages }} · {% if records.has_next %}<a href="{% querystring page=records.next_page_number %}">Próxima →</a>{% endif %}</div>

@@ -1,0 +1,245 @@
+{% extends "core/base.html" %}{% block content %}<div class="card guide"><h2 class="guide-title">Guia completo da CartoGeo Local (0.5.1)</h2>
+<p>O app existe para uma coisa: transformar dado público em abordagem registrada. Tudo o que você faz nele deve terminar em uma próxima ação com data.</p>
+<h2>1. Rotina de uso</h2>
+<p><strong>Todo dia (15 minutos)</strong></p>
+<ol>
+<li>Abra a <strong>Central de operação</strong> e veja "Prospecção desta semana" e "Seu próximo passo".</li>
+<li>Faça as ações vencidas ou do dia (ligações, e-mails, follow-ups).</li>
+<li>Registre cada contato no histórico da oportunidade. O app agenda o próximo passo sozinho.</li>
+<li>Passe no <strong>Radar</strong>: descarte o que não serve (com motivo) e converta o que serve em oportunidade.</li>
+</ol>
+<p><strong>Toda sexta (20 minutos)</strong></p>
+<ol>
+<li>Abra <strong>Metas e relatório</strong> e confira as abordagens da semana (meta: 10).</li>
+<li>Baixe o <strong>Relatório da semana</strong> e envie ao Dr. Gilberto.</li>
+<li>Veja as ações atrasadas e replaneje as datas.</li>
+</ol>
+<p><strong>Todo mês</strong></p>
+<ol>
+<li>Gere o relatório do mês (botão com o nome do mês ou endereço com as datas).</li>
+<li>No dia 20 a agenda atualiza os royalties do ano; confira em <strong>Royalties</strong>.</li>
+<li>Faça um <strong>Backup</strong> e guarde a cópia fora do computador.</li>
+</ol>
+<h2>2. Abrir, fechar e proteger</h2>
+<ul>
+<li><strong>Abrir:</strong> dois cliques em <code>02_ABRIR.bat</code>. O navegador abre em <code>http://127.0.0.1:8765</code>. Mantenha a janela preta aberta.</li>
+<li><strong>Fechar:</strong> feche a janela preta (ou Ctrl+C nela). Feche o app antes de qualquer atualização.</li>
+<li><strong>Backup:</strong> menu <strong>Backup</strong> → baixar. Para voltar um backup: <code>RESTAURAR.bat</code>, dentro da pasta <code>aplicativo</code>.</li>
+<li><strong>Diagnóstico:</strong> <code>DIAGNOSTICO.bat</code> gera um resumo técnico sem contatos nem senhas, útil para pedir ajuda.</li>
+<li><strong>Onde guardar:</strong> fora do OneDrive (por exemplo, <code>C:\CartoGeo</code>). Sincronização em nuvem com o banco aberto pode corromper os dados.</li>
+</ul>
+<h2>3. Central de operação</h2>
+<p>A tela inicial mostra, de cima para baixo:</p>
+<ul>
+<li><strong>Cartões do radar:</strong> sinais a revisar, novos em 24 horas, prazos que vencem em 7 dias, cartórios cadastrados.</li>
+<li><strong>Prospecção desta semana:</strong> abordagens feitas contra a meta de 10, alvos da Frente 1 ainda não abordados, oportunidades ativas e ações vencendo.</li>
+<li><strong>O que merece sua atenção:</strong> últimos sinais do radar.</li>
+<li><strong>Seu próximo passo:</strong> ações de oportunidades e tarefas internas por data.</li>
+<li><strong>Agenda de atualização e Coletas recentes:</strong> o que roda sozinho e se deu certo.</li>
+</ul>
+<p>"Agenda ativa", no alto à direita, indica que as coletas automáticas estão funcionando.</p>
+<h2>4. Lista quente — Frente 1 (royalties)</h2>
+<p>Os 20 municípios do Plano Comercial, organizados por círculo (1º RN, 2º SE, 3º CE e AL).</p>
+<ul>
+<li><strong>Excedentes 2021–2025:</strong> o valor recebido na parcela acima de 5% e a proporção sobre o total, direto da coleta da ANP. É o número que abre a conversa.</li>
+<li><strong>Excedentes do ano corrente contra o ano anterior:</strong> quando há um ano novo carregado (hoje, 2026 de janeiro a agosto), a coluna mostra o valor e a variação sobre os mesmos meses do ano anterior. Exemplos: Macau +22%, Areia Branca −44%.</li>
+<li><strong>Costa:</strong> extensão de litoral, quando conhecida.</li>
+<li><strong>Etapa e próxima ação:</strong> onde a conversa está e o que fazer, com data.</li>
+<li><strong>Contatos:</strong> quantos cadastrados e quantas abordagens registradas.</li>
+</ul>
+<p>Município com excedente zero (Grossos e Tibau, por exemplo) tem tese fraca pelo critério do plano: decida antes de abordar.</p>
+<p>Abaixo da lista aparecem outros municípios com excedentes, a <strong>produção marítima por campo</strong> (último mês importado, poços, petróleo em barris/dia, gás em mil m³/dia e variação no ano) e o cadastro de poços marítimos produzindo. Em agosto de 2026: Macau 1.703 bbl/dia em 27 poços; Arabaiana sem produção depois de junho. Produção de um campo não indica, por si, qual município é confrontante.</p>
+<h2>5. Lista quente — Paraíba</h2>
+<p>As frentes 2 e 4 na Paraíba:</p>
+<ul>
+<li><strong>Planos diretores monitorados:</strong> lei, idade, marco de revisão (10 anos) e situação. "Data a conferir" quer dizer que a lei ainda não foi conferida no ato original.</li>
+<li><strong>Oportunidades na Paraíba:</strong> Lucena, Santa Rita, João Pessoa (orla após a anulação da LUOS) e Cabedelo, com link direto para gerar a mensagem.</li>
+<li><strong>Sinais de demanda:</strong> Ponte do Futuro, recomendação do MPPB, decisão do TJPB e outros.</li>
+</ul>
+<h2>6. A ficha da oportunidade</h2>
+<p>Cada alvo tem uma ficha. Nela você:</p>
+<ol>
+<li><strong>Vê o diagnóstico:</strong> problema e evidências, escopo possível, pendências.</li>
+<li><strong>Confere os contatos:</strong> cada contato pesquisado vem como "não conferido". Depois de confirmar por telefone, clique em <strong>Conferi por telefone</strong>. Só então ele conta como contato qualificado nas metas.</li>
+<li><strong>Gera a mensagem:</strong> botão <strong>Gerar mensagem de abordagem</strong> (ver seção 7).</li>
+<li><strong>Registra o histórico:</strong> escolha o tipo e escreva o que aconteceu.</li>
+<li><em>Contato realizado</em> → etapa passa a "Contato realizado"; follow-up em 4 dias (D+4); um segundo contato na mesma janela agenda D+10.</li>
+<li><em>Reunião</em> → etapa passa a "Diagnóstico".</li>
+<li><em>Proposta</em> → etapa passa a "Proposta enviada"; follow-up em 4 dias.</li>
+<li><em>Nota</em> e <em>Decisão</em> → só registram.</li>
+<li><strong>Anexa documentos:</strong> propostas, ofícios, atas (até 25 MB por arquivo).</li>
+<li><strong>Controla o financeiro:</strong> parcelas previstas e recebidas. "Recebido" exige data e evidência.</li>
+<li><strong>Abre o briefing interno:</strong> perguntas para a reunião e regras de abordagem.</li>
+</ol>
+<p>Para mudar etapa, prazo, rota (direta ou NUPEC), prioridade ou valores: <strong>Editar oportunidade</strong>.</p>
+<h2>7. Gerador de mensagens</h2>
+<p>Monta um rascunho de e-mail e um roteiro de ligação com os dados do app:</p>
+<ul>
+<li><strong>Royalties:</strong> usa o total recebido de 2021 a 2025, a parcela de excedentes e, quando houver, a variação do ano corrente ("De janeiro a agosto de 2026, a parcela acima de 5% somou R$ 1,5 milhão, 44% abaixo do mesmo período de 2025").</li>
+<li><strong>Planos diretores e demais frentes:</strong> usa a lei e a idade do plano, ou o problema registrado.</li>
+</ul>
+<p>O botão <strong>Abrir no e-mail</strong> preenche destinatários, assunto e texto no seu programa de e-mail. Nada é enviado sem você. Avisos em vermelho indicam dado faltando ou tese fraca.</p>
+<p>Regras que o texto já segue: mostrar o problema com dado público, nunca o método; nenhum mapa; nenhuma promessa de receita.</p>
+<h2>8. Metas e relatório</h2>
+<ul>
+<li><strong>Abordagens nesta semana:</strong> contatos registrados desde segunda-feira, contra a meta de 10.</li>
+<li><strong>Indicadores do trimestre:</strong> contratos, propostas, contatos qualificados, reuniões e editais triados, contra as metas do plano.</li>
+<li><strong>Atrasadas e próximos 7 dias:</strong> a lista de ligações e follow-ups.</li>
+<li><strong>Funil por frente e etapa.</strong></li>
+<li><strong>Relatórios:</strong> "Relatório da semana" e os botões do mês atual e do mês anterior baixam um arquivo pronto para enviar. Outro período: <code>/metas/relatorio.md?de=2026-10-01&amp;ate=2026-10-31</code>.</li>
+</ul>
+<p>Tudo é contado a partir do que foi registrado. O que não foi registrado não aparece.</p>
+<h2>9. Radar de oportunidades</h2>
+<p>Reúne sinais do PNCP, das páginas monitoradas, dos diários e das pesquisas registradas.</p>
+<ul>
+<li>Filtre por tema, UF, origem, prazo e data da coleta.</li>
+<li>Abra o sinal e leia a fonte original antes de decidir.</li>
+<li><strong>Descartar</strong> exige um motivo (fica registrado e conta como edital triado).</li>
+<li><strong>Converter em oportunidade</strong> cria a ficha no funil com a fonte anexada.</li>
+<li>O filtro de exclusão já descarta compra de equipamentos, aparelhos, software e frota.</li>
+<li>A relevância é uma regra de palavras (não é probabilidade de contrato).</li>
+</ul>
+<h2>10. Fontes e coletas</h2>
+<p>Tela para rodar uma coleta na hora:</p>
+<ul>
+<li><strong>ANP — série de royalties 2021 até hoje:</strong> carrega todos os anos de uma vez. Também há um botão na tela <strong>Royalties</strong>.</li>
+<li><strong>ANP — royalties anuais:</strong> um ano específico.</li>
+<li><strong>ANP — poços:</strong> atualização do cadastro de poços.</li>
+<li><strong>IBGE:</strong> municípios das cinco UFs.</li>
+<li><strong>PNCP:</strong> licitações por palavras no objeto.</li>
+<li><strong>Páginas oficiais monitoradas.</strong></li>
+</ul>
+<p>Só uma coleta roda por vez. A página da coleta se atualiza sozinha até "Concluída", "Parcial" ou "Falhou" (com o motivo).</p>
+<p><strong>Pasta de importação (arquivos baixados por você).</strong> Coloque arquivos oficiais em <code>aplicativo\dados\importar</code> e abra o app: cada um é importado uma única vez, e o original fica guardado.</p>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Regra do nome</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tabela anual de royalties da ANP (.xlsx)</td>
+<td>o ano no nome</td>
+<td>royalties-tabelas-jan-dez-2026_03.xlsx</td>
+</tr>
+<tr>
+<td>Produção por poço do CDP (.csv)</td>
+<td>_Mar ou _Terra no nome</td>
+<td>2026_08_producao_Mar.csv</td>
+</tr>
+</tbody>
+</table>
+<p>Confira o resultado em Royalties (escolha o ano) e em Poços e produção → Importar produção mensal → Períodos importados. Arquivo vazio ou fora do leiaute falha com o motivo, sem sobrescrever nada.</p>
+<h2>11. Fontes e cobertura</h2>
+<p>Mostra a saúde de cada fonte: última tentativa, último sucesso e erro.</p>
+<ul>
+<li><strong>Adicionar fonte pública ou privada:</strong> cole a URL de uma página de publicações, feed RSS/Atom ou PDF com texto, escolha os termos e se é origem pública ou privada (empresa).</li>
+<li>Prefira páginas de publicações e feeds, não a página inicial: a página inicial traz links de menu que viram ruído.</li>
+<li>PDF escaneado precisa de OCR externo.</li>
+</ul>
+<h2>12. Agenda e automações</h2>
+<p>Rotinas que rodam sozinhas enquanto o app está aberto:</p>
+<table>
+<thead>
+<tr>
+<th>Rotina</th>
+<th>Frequência padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PNCP</td>
+<td>a cada 12 horas</td>
+</tr>
+<tr>
+<td>Páginas e feeds</td>
+<td>a cada 2 horas</td>
+</tr>
+<tr>
+<td>Diários (Querido Diário)</td>
+<td>uma vez ao dia</td>
+</tr>
+<tr>
+<td>Cadastro de poços</td>
+<td>segunda, 8h</td>
+</tr>
+<tr>
+<td>Royalties do ano</td>
+<td>dia 20, 9h</td>
+</tr>
+</tbody>
+</table>
+<p>Você pode criar, editar, pausar e executar agora. Para rodar com o app fechado: <code>ATIVAR_AGENDA_WINDOWS.bat</code> (a cada 5 minutos, com o computador ligado e sua sessão aberta); para desligar, <code>DESATIVAR_AGENDA_WINDOWS.bat</code>.</p>
+<h2>13. Royalties</h2>
+<p>Ranking por excedentes, com filtros de ano, UF e município. Mínimos = parcela de 5% (Lei 7.990/89); excedentes = parcela acima de 5% (Lei 9.478/97), onde a confrontação atua. A participação especial ainda não entra no app. O botão <strong>Carregar/atualizar série</strong> traz todos os anos. Hoje há 2021 a 2025 completos e 2026 de janeiro a agosto.</p>
+<h2>14. Poços e produção</h2>
+<p>Cadastro da ANP para PB, RN, CE, SE e AL, com filtros de UF, ambiente (terra ou mar), situação e texto livre.</p>
+<ul>
+<li><strong>Abrir mapa:</strong> os poços do filtro no mapa.</li>
+<li><strong>Planilha Excel deste filtro:</strong> resumo por UF, produção marítima por campo e a lista completa.</li>
+<li><strong>GeoJSON e pacote cartográfico:</strong> para o QGIS.</li>
+<li><strong>Importar produção mensal:</strong> CSV do CDP enviado pela tela ou pela pasta de importação. Hoje há produção marítima de janeiro a agosto de 2026 (RN, SE e AL).</li>
+</ul>
+<p>Situação "produzindo" é do cadastro, não da produção mensal.</p>
+<h2>15. Planos diretores</h2>
+<p>Cadastro por município: lei, data-base (instituição ou última revisão integral), fonte oficial, data da pesquisa e prazo local se houver. O app calcula o marco de 10 anos e mostra: "Data a conferir", "Revisão a verificar nos próximos 12 meses", "Marco de revisão ultrapassado" ou "Marco futuro". Marque "Conferi a lei" só depois de ver o ato original.</p>
+<h2>16. Inteligência territorial</h2>
+<p>Ficha de cada um dos 751 municípios: royalties por mês, organizações cadastradas e plano diretor. O botão <strong>Investigar</strong> cria um sinal de royalties para o município.</p>
+<h2>17. Central de cartórios</h2>
+<p>78 cartórios da Paraíba (CNJ, 18/09/2026), com endereço, atribuições e contatos. Filtre por município e Registro de Imóveis, copie e-mails e telefones de uma vez ou exporte CSV. "Não contatar" tira o cartório da cópia. Cartórios são canal de indicação para SIGEF e REURB, não compradores.</p>
+<h2>18. Organizações e contatos</h2>
+<ul>
+<li><strong>Organizações:</strong> prefeituras, órgãos, empresas, escritórios e parceiros, com papel (comprador, interlocutor, parceiro).</li>
+<li><strong>Contatos:</strong> nome, cargo, e-mail, telefone, fonte e data de conferência.</li>
+<li>Contato qualificado = conferido e não bloqueado (cartórios não entram na meta).</li>
+</ul>
+<h2>19. Tarefas e decisões</h2>
+<p>Ações internas que não são de um cliente: estruturar cursos, dossiê de habilitação, cadastros de fornecedor. Etapas: verificar, diagnóstico, escopo, aguardar decisão, concluído. Cada alteração fica no histórico. Os dois primeiros cursos (GNSS e QGIS) já estão aqui.</p>
+<h2>20. Continuidade e evidências</h2>
+<ul>
+<li><strong>Exportar acompanhamento:</strong> pacote com tarefas, oportunidades, coletas e agenda para retomar o trabalho com o assistente.</li>
+<li><strong>Gerar dossiê:</strong> pacote com todas as fontes coletadas, hashes SHA-256 e manifesto. Serve para rastrear a origem dos dados; não é prova jurídica nem assinatura digital.</li>
+</ul>
+<h2>21. Regras de ouro</h2>
+<ol>
+<li>Mostre o problema com dado público; nunca o método.</li>
+<li>Nenhum mapa indicativo em material comercial.</li>
+<li>PMRR de Bayeux fora de qualquer peça comercial.</li>
+<li>Não prometa receita nem resultado administrativo ou judicial.</li>
+<li>Registre tudo: o que não está no app não aparece nas metas.</li>
+<li>Contato só é qualificado depois de conferido.</li>
+</ol>
+<h2>22. Problemas comuns</h2>
+<table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>O que fazer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Agenda sem sinal"</td>
+<td>O app não está aberto ou a agenda travou: feche e abra de novo.</td>
+</tr>
+<tr>
+<td>Coleta "Falhou"</td>
+<td>Leia o motivo na página da coleta; tente de novo mais tarde.</td>
+</tr>
+<tr>
+<td>PNCP com HTTP 429</td>
+<td>A fonte pediu pausa; a próxima rotina tenta de novo.</td>
+</tr>
+<tr>
+<td>Diários com erro de SSL</td>
+<td>Problema conhecido da fonte; use as páginas monitoradas.</td>
+</tr>
+<tr>
+<td>Tela com erro</td>
+<td>Rode <code>DIAGNOSTICO.bat</code> e envie o arquivo gerado.</td>
+</tr>
+</tbody>
+</table></div>{% endblock %}

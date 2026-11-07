@@ -1,0 +1,7 @@
+{% extends "core/base.html" %}{% block content %}
+<p class="muted">Rascunho gerado com dados do aplicativo. Revise, ajuste o tom e envie do seu e-mail. Nada é enviado automaticamente. Regra: mostrar o problema com dado público, nunca o método; nenhum mapa; não prometer receita.</p>
+{% for w in warnings %}<div class="notice error" role="alert">{{ w }}</div>{% endfor %}
+<div class="row"><a class="button secondary" href="/oportunidade/{{ o.pk }}/">← Voltar à oportunidade</a>{% if to %}<a class="button" href="mailto:{{ to }}?subject={{ subject|urlencode }}&amp;body={{ body|urlencode }}">Abrir no e-mail</a>{% endif %}</div>
+<div class="card"><h2>E-mail</h2><p><b>Para:</b> {{ to|default:"cadastre um contato com e-mail" }}</p><p><b>Assunto:</b> <span id="subj">{{ subject }}</span></p><textarea id="msg" rows="16" style="width:100%">{{ body }}</textarea><button type="button" class="secondary" onclick="navigator.clipboard.writeText(document.getElementById('msg').value)">Copiar texto</button></div>
+<div class="card"><h2>Roteiro de ligação</h2><textarea id="call" rows="9" style="width:100%">{{ call }}</textarea><button type="button" class="secondary" onclick="navigator.clipboard.writeText(document.getElementById('call').value)">Copiar roteiro</button></div>
+{% endblock %}

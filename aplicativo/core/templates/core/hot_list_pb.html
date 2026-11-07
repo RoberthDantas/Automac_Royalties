@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}{% load cg %}{% block content %}
+<p class="muted">Frentes 2 e 4 na Paraíba: planos diretores vencidos ou recentes, sinais de demanda e oportunidades. O eixo da Ponte do Futuro (Cabedelo–Santa Rita–Lucena) concentra os casos mais quentes.</p>
+<div class="row"><a class="button" href="/planos/novo/">+ Cadastrar plano diretor</a><a class="button secondary" href="/sinais/novo/">+ Registrar evidência</a><a class="button secondary" href="/lista-quente/">Lista quente — Frente 1</a></div>
+<div class="card table-wrap"><div class="section-head"><h2>Planos diretores monitorados</h2><a href="/planos/">Todos →</a></div>
+<table><tr><th>Município</th><th>Lei</th><th>Idade</th><th>Situação</th><th></th></tr>
+{% for p in plans %}<tr><td><b>{{ p.municipality.name }}</b></td><td>{{ p.law }}<br><small class="muted">{{ p.notes|truncatechars:220 }}</small></td><td>{{ p.age }} anos</td><td><span class="tag">{{ p.review_status }}</span><br><small>Marco: {{ p.reference_due|date:"d/m/Y" }}</small></td><td><a href="{{ p.source_url }}" target="_blank" rel="noopener noreferrer">Fonte</a> · <a href="/planos/{{ p.pk }}/editar/">Editar</a></td></tr>
+{% empty %}<tr><td colspan="5" class="empty">Nenhum plano cadastrado.</td></tr>{% endfor %}</table>
+<p class="muted">"Data a conferir" = a lei ou a data ainda não foi conferida no ato original. Ao conferir, marque a caixa no cadastro do plano e informe a data da pesquisa.</p></div>
+<div class="card table-wrap"><div class="section-head"><h2>Oportunidades na Paraíba</h2><a href="/oportunidades/">Funil →</a></div>
+<table><tr><th>Oportunidade</th><th>Frente</th><th>Próxima ação</th><th></th></tr>
+{% for o in opps %}<tr><td><a href="/oportunidade/{{ o.pk }}/"><b>{{ o.title }}</b></a><br><small class="muted">{{ o.problem|truncatechars:200 }}</small></td><td>{{ o.get_front_display }}<br><span class="tag">{{ o.get_stage_display }}</span></td><td>{{ o.next_action }}<br><small class="{% if o.next_date and o.next_date < today %}error{% endif %}">{{ o.next_date|date:"d/m"|default:"Sem prazo" }}</small></td><td><a href="/oportunidade/{{ o.pk }}/mensagem/">Mensagem</a></td></tr>
+{% empty %}<tr><td colspan="4" class="empty">Nenhuma oportunidade ativa na Paraíba.</td></tr>{% endfor %}</table></div>
+<div class="card"><div class="section-head"><h2>Sinais de demanda</h2><a href="/radar/">Radar →</a></div>
+{% for s in signals %}<article class="mini-signal"><span class="tag">{{ s.get_kind_display }}</span> <a href="/sinais/{{ s.pk }}/"><h3>{{ s.title|truncatechars:140 }}</h3></a><small>{{ s.municipality|default:"" }} · {{ s.publication_date|date:"d/m/Y"|default:"data a conferir" }} · {{ s.get_status_display }}</small></article>{% empty %}<p class="empty">Sem sinais na Paraíba.</p>{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}{% block content %}
+<p><a class="button" href="/acompanhamento/">Preparar acompanhamento para o ChatGPT e varrer editais</a></p><p>Acompanhe evidências, pendências e decisões antes de abrir uma oportunidade comercial.</p>
+<p><a class="button" href="/planejamento/novo/">Nova ação interna</a> <a class="button secondary" href="/planejamento/continuidade.md">Baixar resumo para continuar no chat</a></p>
+<div class="card"><h2>Fluxo de trabalho</h2><p>Evidência → verificação atual → diagnóstico interno → escopo → decisão da direção.</p><p>Notícias de entregas concluídas entram como histórico. Atualização cadastral, titulação e registro imobiliário têm etapas próprias. Valores e prazos comerciais dependem de definição.</p>
+<form method="get"><label for="status">Etapa</label><select name="status" id="status"><option value="">Todas</option>{% for value,label in statuses %}<option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><button>Filtrar</button></form></div>
+{% for p in plans %}<div class="card"><span class="tag">{{ p.get_category_display }} · {{ p.get_status_display }}</span><h2><a href="/planejamento/{{ p.pk }}/">{{ p.title }}</a></h2>
+<p>{{ p.municipality|default:"Município a definir" }} · Responsável: {{ p.owner }} · Prazo: {{ p.due_date|default:"Não definido" }}</p>
+{% if p.signal %}<p>{{ p.signal.reason }}</p><p>Data da fonte: {{ p.signal.payload.date|default:"Não identificada" }}{% if p.signal.payload.quantity %} · {{ p.signal.payload.quantity }} {{ p.signal.payload.quantity_unit }}{% endif %}</p>
+{% if p.signal.payload.attachments %}<p>Evidência fornecida: <a href="/referencia-interna/casa_legal_capa.jpeg/">Foto da capa</a> · <a href="/referencia-interna/casa_legal_interior.jpeg/">Foto do interior</a></p>{% else %}<p><a href="{{ p.signal.source_url }}" target="_blank" rel="noopener noreferrer">Notícia oficial</a></p>{% endif %}
+<p><a href="/sinais/{{ p.signal.pk }}/">Revisar no radar e avaliar oportunidade</a></p>{% endif %}
+<p><strong>Próxima ação:</strong> {{ p.next_action }}</p><p><strong>Pendências:</strong> {{ p.blockers|default:"Nenhuma registrada" }}</p><p>{{ p.notes|linebreaksbr }}</p></div>{% empty %}<p>Nenhuma ação nesta etapa.</p>{% endfor %}
+<div class="card"><h2>Referências e economia de contexto</h2><p><a href="/referencia-interna/UFs_Municipios_Censo2010.zip/">Tabelas do Censo 2010</a>: contexto histórico de aglomerados subnormais; não representam a demanda atual nem contêm limites municipais.</p>
+<p>Ao encerrar uma etapa, registre resultado, pendência e próxima ação. Para retomar no chat, baixe o resumo acima e envie apenas os arquivos alterados ou o erro completo. Bases já validadas ficam no aplicativo; novas consultas devem responder a uma pendência concreta.</p><p>O aplicativo não agenda buscas ou envia contatos automaticamente.</p></div>
+{% endblock %}

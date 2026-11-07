@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}{% block content %}
+<link rel="stylesheet" href="/static/leaflet/leaflet.css">
+<p><a href="/pocos/?{{ filters }}">← Lista de poços filtrada</a> · <a href="/pocos/cartografia.zip?{{ filters }}">Baixar mapa offline e camadas QGIS</a></p>
+<div class="card"><label>UF para aproximar<select id="map-uf"><option value="">Todas</option></select></label><label>Município<select id="map-municipality"></select></label><label>Linha fornecida<select id="map-line"><option value="">Escolher linha (aproximar)</option></select></label><p id="territory-status" role="status">Carregando municípios e linhas…</p></div>
+<p id="map-status" role="status">Carregando poços…</p><div id="well-map" style="height:68vh;min-height:420px;background:#e7f1f5;border-radius:12px"></div>
+<p><span style="color:#9a5418">● Terra</span> · <span style="color:#126b9a">● Mar</span> · <span style="color:#9642a0">━ Linhas LBR fornecidas</span></p><p class="muted">Mapa interno. Municípios simplificados para contexto regional. Traçados LBR recebidos preservados, sem certificação de oficialidade ou cálculo de direitos a royalties. O arquivo original não tem código IBGE/UF; nenhuma linha foi atribuída automaticamente a município.</p>
+<script src="/static/leaflet/leaflet.js"></script><script src="/static/pocos_map.js"></script><script src="/static/territorio_map.js"></script>
+<script>
+const readJSON=url=>fetch(url).then(r=>{if(!r.ok)throw Error('Falha ao carregar '+url);return r.json()});
+Promise.all([readJSON('/pocos/exportar.geojson?'+window.location.search.slice(1)),readJSON('/static/pocos_ufs.geojson'),readJSON('/static/municipios_ibge.geojson'),readJSON('/static/linhas_lbr.geojson')]).then(([p,u,m,l])=>{const map=window.drawWellMap(p,u,true);window.addTerritoryLayers(map,m,l,true)}).catch(e=>{document.getElementById('map-status').textContent=e.message;document.getElementById('territory-status').textContent='Carregamento não concluído.'});
+</script>{% endblock %}

@@ -1,0 +1,7 @@
+# Dados reais (banco, contatos, arquivos baixados) NUNCA entram no repositório
+aplicativo/dados/
+aplicativo/.venv/
+__pycache__/
+*.pyc
+dist/
+*.sqlite3

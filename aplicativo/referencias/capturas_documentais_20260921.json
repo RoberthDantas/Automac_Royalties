@@ -1,0 +1,26 @@
+[
+  {
+    "title": "CPC",
+    "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm",
+    "status": "falhou",
+    "error": "[Errno -3] Temporary failure in name resolution"
+  },
+  {
+    "title": "MP_2200_2",
+    "url": "https://www.planalto.gov.br/ccivil_03/mpv/antigas_2001/2200-2.htm",
+    "status": "falhou",
+    "error": "[Errno -3] Temporary failure in name resolution"
+  },
+  {
+    "title": "Habita Legal — Nova Morada / Portal do Poço",
+    "url": "https://cabedelo.pb.gov.br/habita-legal-prefeitura-de-cabedelo-entrega-termos-de-posse-no-bairro-do-portal-do-poco-e-regularizada-mais-15-casas-na-comunidade-nova-morada/",
+    "status": "falhou",
+    "error": "[Errno -3] Temporary failure in name resolution"
+  },
+  {
+    "title": "Habita Legal — Oceania VI / Jacaré",
+    "url": "https://cabedelo.pb.gov.br/habita-legal-prefeitura-de-cabedelo-entrega-documentacao-e-regulariza-mais-de-80-de-casas-populares-no-bairro-do-jacare/",
+    "status": "falhou",
+    "error": "[Errno -3] Temporary failure in name resolution"
+  }
+]
