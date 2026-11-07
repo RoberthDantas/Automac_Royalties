@@ -7,5 +7,5 @@ type DIAGNOSTICO_CARTOGEO.txt
 pause
 exit /b
 :missing
-echo Ambiente local nao encontrado. Execute INSTALAR.bat na primeira instalacao.
+echo Ambiente local nao encontrado. Execute 01_INSTALAR.bat (pasta principal) na primeira instalacao.
 pause

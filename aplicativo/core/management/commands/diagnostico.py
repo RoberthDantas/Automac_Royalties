@@ -14,7 +14,7 @@ class Command(BaseCommand):
         pending=executor.migration_plan(executor.loader.graph.leaf_nodes())
         self.stdout.write('Migrações pendentes: '+str(len(pending)))
         if pending:
-            self.stdout.write('Abra INICIAR.bat para aplicar a atualização antes de consultar os totais.');return
+            self.stdout.write('Abra 02_ABRIR.bat (pasta principal) para aplicar a atualização antes de consultar os totais.');return
         for model,label in [(Municipality,'Municípios'),(Well,'Poços'),(Signal,'Sinais'),(InternalPlan,'Ações internas')]:
             self.stdout.write(f'{label}: {model.objects.count()}')
         for job in CollectionJob.objects.order_by('-pk')[:3]:

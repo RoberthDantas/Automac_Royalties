@@ -1,4 +1,4 @@
-CARTOGEO 0.5.2 — COMECE AQUI
+CARTOGEO 0.5.3 — COMECE AQUI
 
 Guia completo: LEIA_PRIMEIRO_Guia_de_instalacao_e_uso.pdf (nesta pasta).
 

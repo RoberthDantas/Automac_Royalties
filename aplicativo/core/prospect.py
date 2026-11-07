@@ -154,7 +154,12 @@ def verify_contact(request, pk):
         c.notes = (c.notes + '\n' if c.notes else '') + f'{c.verified_on:%d/%m/%Y}: {note}'
     c.save(update_fields=['verified_on', 'notes'])
     messages.success(request, f'Contato conferido em {c.verified_on:%d/%m/%Y}. Agora conta como contato qualificado.')
-    return redirect(request.POST.get('next') or '/contatos/')
+    # 0.5.3: só volta para endereços do próprio app (evita redirecionamento para site externo).
+    from django.utils.http import url_has_allowed_host_and_scheme
+    target = request.POST.get('next') or ''
+    if not url_has_allowed_host_and_scheme(target, allowed_hosts={request.get_host()}, require_https=False):
+        target = '/contatos/'
+    return redirect(target)
 
 
 # ---------- Gerador de mensagens ----------

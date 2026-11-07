@@ -6,5 +6,5 @@ if not exist .venv\Scripts\python.exe goto missing
 pause
 exit /b
 :missing
-echo Execute INSTALAR.bat primeiro.
+echo Execute 01_INSTALAR.bat (pasta principal) primeiro.
 pause

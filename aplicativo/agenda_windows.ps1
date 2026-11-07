@@ -9,7 +9,7 @@ if ($Remover) {
 $Root = $PSScriptRoot
 $Python = Join-Path $Root '.venv\Scripts\python.exe'
 $Manage = Join-Path $Root 'manage.py'
-if (!(Test-Path $Python)) { throw 'Execute INSTALAR.bat ou ATUALIZAR.bat antes de ativar a agenda.' }
+if (!(Test-Path $Python)) { throw 'Execute 01_INSTALAR.bat (pasta principal) antes de ativar a agenda.' }
 $Arguments = '"' + $Manage + '" executar_agenda --wait'
 $Action = New-ScheduledTaskAction -Execute $Python -Argument $Arguments -WorkingDirectory $Root
 $Trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 5)

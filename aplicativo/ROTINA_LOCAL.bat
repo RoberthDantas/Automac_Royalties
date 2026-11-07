@@ -8,5 +8,5 @@ echo Agenda local ativa. Mantenha esta janela aberta. Ctrl+C para encerrar.
 timeout /t 30 /nobreak >nul
 goto loop
 :fail
-echo Execute INSTALAR.bat antes.
+echo Execute 01_INSTALAR.bat (pasta principal) antes.
 pause

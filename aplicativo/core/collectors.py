@@ -383,7 +383,7 @@ def _start_job(source,parameters):
     import subprocess,sys,os
     # One collector process per application. A failed/restarted process is visible, never silently marked successful.
     if CollectionJob.objects.filter(status__in=['queued','running']).exists():
-        raise ValueError('Já há uma coleta em andamento. Aguarde ou marque a execução interrompida após verificar que terminou.')
+        raise ValueError('Já há uma coleta em andamento. Aguarde terminar; se ela travou, feche e abra o app (02_ABRIR.bat) que a execução interrompida é encerrada sozinha.')
     job=CollectionJob.objects.create(source=source,parameters=parameters)
     log_dir=settings.DATA_DIR/'logs';log_dir.mkdir(exist_ok=True)
     env=os.environ.copy();env['CARTOGEO_DATA_DIR']=str(settings.DATA_DIR)

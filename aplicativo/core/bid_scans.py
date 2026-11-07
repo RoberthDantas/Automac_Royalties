@@ -1,5 +1,5 @@
 """Resumable public PNCP triage. Matching does not establish eligibility."""
-import json,time,urllib.parse
+import json,time,urllib.error,urllib.parse
 from copy import deepcopy
 from datetime import timedelta
 from django.utils import timezone
@@ -12,6 +12,18 @@ CAPABILITIES={
  'geodados':{'label':'Geoprocessamento e cartografia','terms':'geoprocessamento, georreferenciamento, cartografia, cartográfico, cartográficos, sensoriamento remoto, sistema de informação geográfica, sistema de informações geográficas, banco de dados geográficos','review':'Confirmar volume, formatos, equipe e produtos exigidos.'},
  'planejamento':{'label':'Planejamento territorial e apoio técnico','terms':'plano diretor, planos diretores, mapeamento de risco, erosão costeira, diagnóstico territorial, royalties de petróleo','review':'Conferir especialidades complementares e escopo. Não incluir o PMRR de Bayeux em material comercial.'}
 }
+
+# 0.5.3: o PNCP responde HTTP 429 quando recebe páginas seguidas sem intervalo. A varredura agora espera entre
+# páginas, tenta de novo respeitando o Retry-After da fonte e, se a pausa continuar, encerra a rodada sem consultar
+# as demais UFs (que também seriam recusadas). A próxima execução retoma de onde parou.
+PAGE_PAUSE_SECONDS=1.5
+
+def rate_limited(exc):
+    cause=exc
+    while cause is not None:
+        if isinstance(cause,urllib.error.HTTPError) and cause.code==429:return True
+        cause=cause.__cause__
+    return 'HTTP 429' in str(exc)
 
 def default_parameters(profiles=None,ufs=None,pages=40):
     profiles=profiles or list(CAPABILITIES)
@@ -30,7 +42,9 @@ def collect_capabilities(job):
     progress=p.setdefault('progress',{})
     budget=min(max(int(p.get('budget_seconds',300)),10),600);limit=time.monotonic()+budget
     cap=min(max(int(p.get('pages',40)),1),40)
+    throttled=False;requests_made=0
     for uf in ufs:
+        if throttled:break
         state=progress.setdefault(uf,{'next_page':1,'pages':0,'scanned':0,'new':0,'matches':0,'done':False})
         if state['done']:continue
         state.pop('error',None);state.pop('pause',None)
@@ -41,8 +55,10 @@ def collect_capabilities(job):
             page=state['next_page']
             params={'uf':uf,'pagina':page,'tamanhoPagina':50,'dataFinal':p['end_date']}
             url='https://pncp.gov.br/api/consulta/v1/contratacoes/proposta?'+urllib.parse.urlencode(params)
+            if requests_made:time.sleep(PAGE_PAUSE_SECONDS)
+            requests_made+=1
             try:
-                raw,snap=fetch(url,job,'json',timeout=min(int(p.get('timeout',20)),20),attempts=1,
+                raw,snap=fetch(url,job,'json',timeout=min(int(p.get('timeout',20)),20),attempts=3,
                      progress=f'Varredura {uf}, página {page}.')
                 data=json.loads(raw) if raw else {'data':[],'totalPaginas':0,'empty':True}
                 if not isinstance(data,dict) or not isinstance(data.get('data'),list):raise ValueError('Resposta PNCP inesperada.')
@@ -63,11 +79,16 @@ def collect_capabilities(job):
                 pages_this_run+=1
                 job.parameters=p;job.save(update_fields=['parameters'])
             except Exception as exc:
-                state['error']=f'{type(exc).__name__}: {str(exc)[:500]}';break
+                state['error']=f'{type(exc).__name__}: {str(exc)[:500]}'
+                if rate_limited(exc):
+                    throttled=True
+                    state['pause']='O PNCP pediu pausa (HTTP 429). As UFs seguintes ficam para a próxima execução, que retoma desta página.'
+                break
         job.parameters=p;job.save(update_fields=['parameters'])
     partial=any(not progress.get(uf,{}).get('done') for uf in ufs)
     failures=[uf+': '+progress[uf]['error'] for uf in ufs if progress.get(uf,{}).get('error')]
     if failures and not any(progress.get(uf,{}).get('pages') for uf in ufs):
         raise ValueError('Nenhuma UF consultada com sucesso. '+'; '.join(failures))
     summary='; '.join(f"{uf}: {progress.get(uf,{}).get('scanned',0)} examinados, {progress.get(uf,{}).get('matches',0)} correspondências, {progress.get(uf,{}).get('excluded',0)} descartadas pelo filtro, "+('concluído' if progress.get(uf,{}).get('done') else 'pendente/parcial') for uf in ufs)
-    return summary+'. Propostas abertas no recorte até '+p['end_date']+'. Correspondência por objeto, sem avaliação de habilitação. Contagens acumuladas no ciclo; paginação da fonte é dinâmica. '+('; '.join(failures) if failures else ''),partial
+    pause_note='Rodada encerrada porque o PNCP pediu pausa (HTTP 429); a próxima execução retoma as UFs pendentes. ' if throttled else ''
+    return summary+'. Propostas abertas no recorte até '+p['end_date']+'. Correspondência por objeto, sem avaliação de habilitação. Contagens acumuladas no ciclo; paginação da fonte é dinâmica. '+pause_note+('; '.join(failures) if failures else ''),partial

@@ -9,7 +9,7 @@ def norm(value):
 
 def run():
     if not (ROOT/'manage.py').is_file() or not (ROOT/'cartogeo/settings.py').is_file():
-        raise RuntimeError('Copie os arquivos deste pacote para a mesma pasta que contem INICIAR.bat e manage.py.')
+        raise RuntimeError('Copie os arquivos deste pacote para a pasta aplicativo (a que contem manage.py).')
     os.chdir(ROOT);sys.path.insert(0,str(ROOT))
     from launch import local_lock
     app_lock=local_lock();collector_lock=local_lock('collection.lock')
@@ -71,7 +71,7 @@ def run():
     except Exception:
         if dest and dest.is_dir():shutil.rmtree(dest)
         raise
-    print('\nIMPORTACAO CONCLUIDA. Abra INICIAR.bat e consulte Organizacoes e Contatos.')
+    print('\nIMPORTACAO CONCLUIDA. Abra 02_ABRIR.bat e consulte Organizacoes e Contatos.')
     print('Em Fontes e coletas, abra CARTORIOS_CNJ para consultar o resumo e os documentos.')
     for warning in warnings+skipped:print(warning)
 

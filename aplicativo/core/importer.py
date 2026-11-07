@@ -86,7 +86,8 @@ def royalty_ytd(codes):
         out[r['municipality_id']]['cur' if r['year'] == last else 'prev'] += r['excess']
     for v in out.values():
         v['pct'] = (float(v['cur']) / float(v['prev']) - 1) * 100 if v['prev'] else None
-    label = f'{last} (' + ('jan' if months[0] == 1 else str(months[0])) + '–' + ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'][months[-1] - 1] + f') vs {last - 1}'
+    abbr = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez']
+    label = f'{last} ({abbr[months[0] - 1]}–{abbr[months[-1] - 1]}) vs {last - 1}'
     return label, dict(out)
 
 

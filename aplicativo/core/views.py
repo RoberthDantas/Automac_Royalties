@@ -33,6 +33,8 @@ def dashboard(request):
     return render(request,'core/dashboard.html',{'title':'Sua central de inteligência.',
        'signals':Signal.objects.filter(status='novo').count(),'active_count':active.count(),
        'tasks':active.filter(next_date__lte=today).select_related('organization')[:12],
+       # 0.5.3: o painel mostrava len(tasks), limitado às 12 linhas exibidas; o total real vem da contagem.
+       'tasks_total':active.filter(next_date__lte=today).count(),
        'no_date':active.filter(next_date=None).count(),'upcoming':active.filter(next_date__gt=today).select_related('organization')[:6],
        'net':gross-expenses,'gross':gross,'expenses':expenses,'today':today,
        'has_base':Municipality.objects.exists(),'jobs':CollectionJob.objects.all()[:5],
