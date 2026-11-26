@@ -3,7 +3,7 @@ import secrets
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = Path(os.environ.get('CARTOGEO_DATA_DIR', BASE_DIR / 'dados')).resolve()
+DATA_DIR = Path(os.environ.get('AUTOMAC_DATA_DIR', BASE_DIR / 'dados')).resolve()
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 secret_file = DATA_DIR / 'secret.key'
 if not secret_file.exists():
@@ -21,12 +21,12 @@ MIDDLEWARE = ['django.middleware.security.SecurityMiddleware', 'django.contrib.s
               'django.middleware.common.CommonMiddleware', 'django.middleware.csrf.CsrfViewMiddleware',
               'django.contrib.auth.middleware.AuthenticationMiddleware', 'django.contrib.messages.middleware.MessageMiddleware',
               'django.middleware.clickjacking.XFrameOptionsMiddleware']
-ROOT_URLCONF = 'cartogeo.urls'
+ROOT_URLCONF = 'automac.urls'
 TEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates', 'DIRS': [], 'APP_DIRS': True,
               'OPTIONS': {'context_processors': ['django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth', 'django.contrib.messages.context_processors.messages',
                 'core.context.navigation']}}]
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': DATA_DIR / 'cartogeo.sqlite3', 'OPTIONS': {'timeout': 30}}}
+DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': DATA_DIR / 'automac.sqlite3', 'OPTIONS': {'timeout': 30}}}
 AUTH_PASSWORD_VALIDATORS = [
  {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', 'OPTIONS': {'min_length': 10}},
  {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
@@ -51,3 +51,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 3 * 1024 * 1024
 FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024
 VERSION = '0.6.0'
+
+# Identidade usada nas mensagens de abordagem e nos relatórios.
+# Cidade/UF e site são opcionais: em branco, ficam fora da assinatura.
+ORG_NAME = os.environ.get('AUTOMAC_ORG_NAME', 'Automac_Royalties')
+ORG_TAGLINE = os.environ.get('AUTOMAC_ORG_TAGLINE', 'Royalties e prospecção')
+ORG_PLACE = os.environ.get('AUTOMAC_ORG_PLACE', '')
+ORG_SITE = os.environ.get('AUTOMAC_ORG_SITE', '')

@@ -9,7 +9,7 @@ from core.models import Municipality,Well,Signal,InternalPlan,CollectionJob
 class Command(BaseCommand):
     help='Resumo técnico curto, sem contatos, senhas ou dados financeiros.'
     def handle(self,*args,**kwargs):
-        self.stdout.write(f'CartoGeo {settings.VERSION} | Python {platform.python_version()} | Django {get_version()}')
+        self.stdout.write(f'Automac_Royalties {settings.VERSION} | Python {platform.python_version()} | Django {get_version()}')
         executor=MigrationExecutor(connection)
         pending=executor.migration_plan(executor.loader.graph.leaf_nodes())
         self.stdout.write('Migrações pendentes: '+str(len(pending)))

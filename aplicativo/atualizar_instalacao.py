@@ -1,10 +1,10 @@
-"""Aplica este pacote como atualização sobre uma instalação existente da CartoGeo, sem tocar nos dados.
+"""Aplica este pacote como atualização sobre uma instalação existente do Automac_Royalties, sem tocar nos dados.
 
 Uso (pelo 05_ATUALIZAR.bat da pasta principal deste pacote):
-    python atualizar_instalacao.py "C:\\CartoGeo"
+    python atualizar_instalacao.py "C:\\Automac_Royalties"
 
 O que faz, em ordem:
- 1. confere que o destino é uma instalação da CartoGeo e que o app está fechado;
+ 1. confere que o destino é uma instalação do Automac_Royalties e que o app está fechado;
  2. copia o banco atual para dados\\backups\\antes_da_atualizacao_<versão>_<data>.sqlite3;
  3. copia os arquivos do programa por cima (nunca a pasta dados nem o .venv);
  4. atualiza as dependências e roda o preparo (migrações), que faz outro backup se o banco mudar.
@@ -23,7 +23,7 @@ SKIP_DIRS = {'dados', '.venv', '__pycache__', '.git', 'dist'}
 
 def version_of(root):
     try:
-        text = (root / 'aplicativo' / 'cartogeo' / 'settings.py').read_text(encoding='utf-8')
+        text = (root / 'aplicativo' / 'automac' / 'settings.py').read_text(encoding='utf-8')
         return re.search(r"VERSION = '([^']+)'", text).group(1)
     except (OSError, AttributeError):
         return '?'
@@ -77,7 +77,7 @@ def main():
     app = dest / 'aplicativo'
     python = app / '.venv' / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
     if not (dest / '02_ABRIR.bat').exists() or not (app / 'manage.py').exists():
-        raise SystemExit(f'Não encontrei uma instalação da CartoGeo em {dest}.')
+        raise SystemExit(f'Não encontrei uma instalação do Automac_Royalties em {dest}.')
     if not python.exists():
         raise SystemExit('Essa instalação ainda não foi concluída. Rode 01_INSTALAR.bat nela primeiro.')
     data_dir = app / 'dados'
@@ -86,7 +86,7 @@ def main():
     old, new = version_of(dest), version_of(SOURCE)
     print(f'Atualizando {dest}\n  de {old} para {new}')
 
-    db = data_dir / 'cartogeo.sqlite3'
+    db = data_dir / 'automac.sqlite3'
     if db.exists():
         backups = data_dir / 'backups'
         backups.mkdir(parents=True, exist_ok=True)
@@ -99,7 +99,7 @@ def main():
     n = copy_program(SOURCE, dest)
     print(f'[2/3] Programa copiado: {n} arquivos (a pasta dados não foi tocada).')
 
-    env = dict(os.environ, CARTOGEO_DATA_DIR=str(data_dir), PYTHONUTF8='1')
+    env = dict(os.environ, AUTOMAC_DATA_DIR=str(data_dir), PYTHONUTF8='1')
     print('[3/3] Dependências e preparo da base. Precisa de internet.')
     subprocess.run([str(python), '-m', 'pip', 'install', '--disable-pip-version-check', '-q', '-r', 'requirements.txt'],
                    cwd=app, env=env, check=True)

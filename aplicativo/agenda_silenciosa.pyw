@@ -1,4 +1,4 @@
-"""Executa a agenda da CartoGeo sem abrir janela (usado pelo Agendador de Tarefas do Windows com pythonw.exe).
+"""Executa a agenda do Automac_Royalties sem abrir janela (usado pelo Agendador de Tarefas do Windows com pythonw.exe).
 
 0.6.0: antes a tarefa usava python.exe e abria uma janela preta a cada 5 minutos. Com pythonw.exe não há
 console, então a saída vai para dados\\logs\\agenda_windows.log (os 500 KB mais recentes).
@@ -12,8 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 os.chdir(ROOT)
 sys.path.insert(0, str(ROOT))
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cartogeo.settings')
-data_dir = Path(os.environ.get('CARTOGEO_DATA_DIR', ROOT / 'dados')).resolve()
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'automac.settings')
+data_dir = Path(os.environ.get('AUTOMAC_DATA_DIR', ROOT / 'dados')).resolve()
 log_dir = data_dir / 'logs'
 log_dir.mkdir(parents=True, exist_ok=True)
 log_path = log_dir / 'agenda_windows.log'

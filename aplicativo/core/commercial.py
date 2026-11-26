@@ -5,6 +5,7 @@ Nada aqui envia mensagens. Os alvos vêm do Plano Comercial de 31/08/2026; núme
 """
 from datetime import date, timedelta
 from decimal import Decimal
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Sum, Count, Q
@@ -273,7 +274,7 @@ def activity_report(request):
             .select_related('opportunity__organization').order_by('created_at'))
     kinds = dict(Activity._meta.get_field('kind').choices)
     active = Opportunity.objects.exclude(stage__in=['perdida', 'concluida', 'suspensa'])
-    lines = [f'# Relatório de prospecção — CartoGeo', f'Período: {start:%d/%m/%Y} a {end:%d/%m/%Y} · gerado em {timezone.localtime():%d/%m/%Y %H:%M}',
+    lines = [f'# Relatório de prospecção — {settings.ORG_NAME}', f'Período: {start:%d/%m/%Y} a {end:%d/%m/%Y} · gerado em {timezone.localtime():%d/%m/%Y %H:%M}',
              f'Gerado por: {display_name(request.user)}', '', f"## Indicadores do trimestre ({m['quarter_start']:%d/%m/%Y} a {m['quarter_end']:%d/%m/%Y})", '',
              '| Indicador | Realizado | Meta |', '|---|---|---|']
     for r in m['rows']:

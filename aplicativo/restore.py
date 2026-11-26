@@ -25,7 +25,7 @@ def restore(path):
                 else:
                     dest.parent.mkdir(parents=True,exist_ok=True)
                     with z.open(i) as src,dest.open('wb') as out:shutil.copyfileobj(src,out)
-        db=staging/'cartogeo.sqlite3'
+        db=staging/'automac.sqlite3'
         if not db.exists() or not (staging/'secret.key').is_file():raise ValueError('Backup incompleto.')
         with closing(sqlite3.connect(db)) as conn:
             if conn.execute('PRAGMA integrity_check').fetchone()[0]!='ok':raise ValueError('Banco corrompido.')

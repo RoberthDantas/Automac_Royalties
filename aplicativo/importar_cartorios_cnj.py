@@ -1,4 +1,4 @@
-"""Importação local da consulta CNJ de 18/09/2026. Compatível com CartoGeo 0.1."""
+"""Importação local da consulta CNJ de 18/09/2026. Compatível com Automac_Royalties 0.1."""
 import os,sys,re,json,unicodedata,hashlib,shutil
 from pathlib import Path
 from datetime import date
@@ -8,7 +8,7 @@ def norm(value):
     return ' '.join(re.sub(r'[^a-z0-9 ]',' ',unicodedata.normalize('NFKD',str(value)).encode('ascii','ignore').decode().lower()).split())
 
 def run():
-    if not (ROOT/'manage.py').is_file() or not (ROOT/'cartogeo/settings.py').is_file():
+    if not (ROOT/'manage.py').is_file() or not (ROOT/'automac/settings.py').is_file():
         raise RuntimeError('Copie os arquivos deste pacote para a pasta aplicativo (a que contem manage.py).')
     os.chdir(ROOT);sys.path.insert(0,str(ROOT))
     from launch import local_lock

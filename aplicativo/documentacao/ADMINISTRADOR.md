@@ -1,4 +1,4 @@
-# Guia do administrador da CartoGeo
+# Guia do administrador do Automac_Royalties
 
 Administrador: Roberth Dantas Gomes, desde 07/11/2026 (versão 0.6.0). Este guia diz onde está cada coisa, como mudar o
 app sem pôr os dados em risco e como publicar uma versão nova. O manual de uso de cada tela continua em
@@ -6,7 +6,7 @@ app sem pôr os dados em risco e como publicar uma versão nova. O manual de uso
 
 ## 1. Regras de ouro
 
-1. **Nunca desenvolva em cima da base real.** A instalação de uso (ex.: `C:\CartoGeo`) só recebe versões prontas. Para
+1. **Nunca desenvolva em cima da base real.** A instalação de uso (ex.: `C:\Automac_Royalties`) só recebe versões prontas. Para
    mexer no código, use uma pasta de desenvolvimento com uma *cópia* da pasta `dados`.
 2. **A pasta `dados` nunca vai para o Git nem para e-mail aberto.** Ela tem contatos de pessoas (dados pessoais),
    histórico comercial e a chave `secret.key` da máquina. O `.gitignore` já a exclui.
@@ -16,15 +16,15 @@ app sem pôr os dados em risco e como publicar uma versão nova. O manual de uso
 
 ## 2. Mapa do código
 
-O app é um projeto Django 6.0 com banco SQLite, servido localmente pelo Waitress em `127.0.0.1:8765`.
+O app é um projeto Django 6.0 com banco SQLite, servido localmente pelo Waitress em `127.0.0.1:8766`.
 
 | Onde | O que tem |
 | --- | --- |
 | `01_INSTALAR.bat` → `aplicativo/instalar_do_zero.py` | Cria o `.venv`, instala `requirements.txt`, prepara a base e a primeira conta |
 | `02_ABRIR.bat` → `aplicativo/launch.py` | Trava de instância única, backup antes de migrar, migrações, cargas, agenda e servidor |
 | `05_ATUALIZAR.bat` → `aplicativo/atualizar_instalacao.py` | Aplica um pacote novo sobre uma instalação, sem tocar em `dados` |
-| `aplicativo/cartogeo/settings.py` | Configuração e o número `VERSION` |
-| `aplicativo/cartogeo/urls.py` | Todas as rotas (endereços das telas) |
+| `aplicativo/automac/settings.py` | Configuração e o número `VERSION` |
+| `aplicativo/automac/urls.py` | Todas as rotas (endereços das telas) |
 | `core/models.py` | Tabelas: Organização, Contato, Oportunidade, Histórico, Sinal, Royalty, Poço, Coleta etc. |
 | `core/views.py` | Painel, cadastros genéricos (`EDITORS` em `forms.py`), oportunidade, sinais, backup |
 | `core/commercial.py` | Lista quente da Frente 1, metas do trimestre, relatório, cadência D+4/D+10 |
@@ -56,13 +56,13 @@ Onde mexer para as mudanças mais comuns:
 Uma vez só:
 
 1. Instale o [Git para Windows](https://git-scm.com/download/win) e use o VS Code.
-2. Pegue o código: `git clone <endereço do repositório> C:\dev\cartogeo` (ou extraia o pacote de atualização ali).
-3. Em `C:\dev\cartogeo\aplicativo`:
+2. Pegue o código: `git clone <endereço do repositório> C:\dev\automac_royalties` (ou extraia o pacote de atualização ali).
+3. Em `C:\dev\automac_royalties\aplicativo`:
    ```
    py -3.13 -m venv .venv
    .venv\Scripts\python.exe -m pip install -r requirements.txt
    ```
-4. Copie a pasta `dados` de uma instalação (com o app fechado) para `C:\dev\cartogeo\aplicativo\dados`.
+4. Copie a pasta `dados` de uma instalação (com o app fechado) para `C:\dev\automac_royalties\aplicativo\dados`.
 5. Para abrir a cópia de desenvolvimento numa porta diferente da instalação de uso:
    ```
    .venv\Scripts\python.exe manage.py runserver 127.0.0.1:8766
@@ -85,9 +85,9 @@ Número X.Y.Z: aumente Z para correção, Y para melhoria, X para mudança grand
 
 1. Escreva `documentacao/NOTAS_X.Y.Z.md` (siga o modelo da 0.6.0).
 2. Rode `aplicativo\GERAR_VERSAO.bat` e informe o número. Ele grava a versão, roda os testes e gera em `dist\`:
-   - `CartoGeo_X.Y.Z_atualizacao.zip`: só o programa, para atualizar instalações com `05_ATUALIZAR.bat`;
-   - `CartoGeo_X.Y.Z_completo.zip`: programa + base, só se você passar `--com-dados <pasta dados>`
-     (`scripts\gerar_versao.py X.Y.Z --com-dados C:\CartoGeo\aplicativo\dados`). Leva dados pessoais: canal restrito.
+   - `Automac_Royalties_X.Y.Z_atualizacao.zip`: só o programa, para atualizar instalações com `05_ATUALIZAR.bat`;
+   - `Automac_Royalties_X.Y.Z_completo.zip`: programa + base, só se você passar `--com-dados <pasta dados>`
+     (`scripts\gerar_versao.py X.Y.Z --com-dados C:\Automac_Royalties\aplicativo\dados`). Leva dados pessoais: canal restrito.
 3. Faça o commit e marque a versão, como o script mostra: `git tag vX.Y.Z` e `git push --follow-tags`.
 4. Atualize cada computador: extraia o ZIP de atualização em outra pasta, feche o app, rode `05_ATUALIZAR.bat`.
 

@@ -57,7 +57,7 @@ def municipalities(request):
 @login_required
 def checkpoint(request):
     # Deliberately compact: no personal contact details, money or raw datasets.
-    lines = ['# CartoGeo — continuidade local', f'Versão: {settings.VERSION}',
+    lines = ['# Automac_Royalties — continuidade local', f'Versão: {settings.VERSION}',
         f'Municípios: {Municipality.objects.count()} | Poços: {Well.objects.count()}',
         'Camadas: municípios IBGE simplificados; 279 linhas LBR fornecidas, validação técnica pendente.',
         'UFs_Municipios.zip: estatísticas históricas do Censo 2010, não malha municipal.',
@@ -68,5 +68,5 @@ def checkpoint(request):
         lines.append(f'- #{p.pk} {p.title} | {p.get_status_display()} | prazo: {p.due_date or "não definido"} | próxima: {p.next_action[:500]}')
     lines += ['', '## Como retomar','Ler este resumo e o ESTADO_PROJETO.md. Consultar apenas os arquivos necessários à próxima tarefa. Enviar diagnóstico curto em caso de erro; não reenviar bases completas sem necessidade.']
     response = HttpResponse('\n'.join(lines),content_type='text/markdown; charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="CONTINUIDADE_CARTOGEO.md"'
+    response['Content-Disposition'] = 'attachment; filename="CONTINUIDADE_AUTOMAC.md"'
     return response

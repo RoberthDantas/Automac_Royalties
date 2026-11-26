@@ -26,8 +26,8 @@ class EntregaTests(TestCase):
         self.assertIn('[seu nome]', sem_nome['body']); self.assertTrue(any('nome completo' in w for w in sem_nome['warnings']))
         u = get_user_model().objects.create_user('gilberto', password='x', first_name='Gilberto', last_name='Silva')
         m = build_messages(o, u)
-        self.assertIn('Sou Gilberto Silva, da CartoGeo', m['body']); self.assertIn('Gilberto Silva\nCartoGeo', m['body'])
-        self.assertIn('"Sou Gilberto, da CartoGeo', m['call'])
+        self.assertIn('Sou Gilberto Silva, da Automac_Royalties', m['body']); self.assertIn('Gilberto Silva\nAutomac_Royalties', m['body'])
+        self.assertIn('"Sou Gilberto, da Automac_Royalties', m['call'])
         self.assertNotIn('Uendry', m['body'] + m['call'])
 
     def test_comandos_de_conta(self):

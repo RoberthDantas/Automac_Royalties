@@ -1,10 +1,10 @@
-# Manual de uso — App CartoGeo 0.5.1
+# Manual de uso — App Automac_Royalties 0.5.1
 
 30/09/2026 · Uendry Maia
 
 ## Como usar este manual
 
-Este manual ensina a operar o App CartoGeo 0.5.1 tela por tela e tarefa por tarefa. Ele complementa o **Guia de uso** que fica dentro do app. Consulte a parte que responde à sua dúvida; não é preciso ler tudo em ordem.
+Este manual ensina a operar o App Automac_Royalties 0.5.1 tela por tela e tarefa por tarefa. Ele complementa o **Guia de uso** que fica dentro do app. Consulte a parte que responde à sua dúvida; não é preciso ler tudo em ordem.
 
 | Parte | Consulte quando precisar de… |
 | --- | --- |
@@ -21,8 +21,8 @@ Este manual ensina a operar o App CartoGeo 0.5.1 tela por tela e tarefa por tare
 
 - **Negrito** é o texto exato de um botão, menu, campo ou aviso, como aparece na tela. Exemplo: **Registrar atividade**.
 - A seta indica um caminho de cliques. Exemplo: **Poços e produção** → **Importar produção mensal**.
-- `Texto em código` é um arquivo, pasta ou endereço. Exemplo: `02_ABRIR.bat`, `http://127.0.0.1:8765`.
-- Os caminhos de pasta partem da pasta principal do app. Hoje ela é `C:\Users\uendr\OneDrive\Documentos\App_Cartogeo\CartoGeo_0.4.1\`. O nome ainda diz 0.4.1, mas a versão instalada é a 0.5.1, que aparece no pé do menu lateral.
+- `Texto em código` é um arquivo, pasta ou endereço. Exemplo: `02_ABRIR.bat`, `http://127.0.0.1:8766`.
+- Os caminhos de pasta partem da pasta principal do app. A recomendada é `C:\Automac_Royalties\`. A versão instalada aparece no pé do menu lateral.
 - **Atenção:** marca uma ação que pode perder dados, travar uma coleta ou gerar retrabalho.
 
 **Três ideias que explicam o app inteiro**
@@ -33,7 +33,7 @@ Este manual ensina a operar o App CartoGeo 0.5.1 tela por tela e tarefa por tare
 
 ## Parte 1 — Instalar, abrir, entrar e fechar
 
-O app roda no seu computador e abre no navegador pelo endereço `http://127.0.0.1:8765`. Enquanto a janela preta estiver aberta, o app e a agenda de coletas funcionam.
+O app roda no seu computador e abre no navegador pelo endereço `http://127.0.0.1:8766`. Enquanto a janela preta estiver aberta, o app e a agenda de coletas funcionam.
 
 ### 1.1 O que há na pasta principal
 
@@ -47,7 +47,7 @@ O app roda no seu computador e abre no navegador pelo endereço `http://127.0.0.
 | `aplicativo\RESTAURAR.bat` | Volta um backup (ver Procedimento 12) |
 | `aplicativo\DIAGNOSTICO.bat` | Gera um resumo técnico sem contatos nem senhas, para pedir ajuda |
 
-**Atenção:** a pasta está dentro do OneDrive. A sincronização pode corromper o banco enquanto o app está aberto. Mova para `C:\CartoGeo\` assim que puder (Procedimento 13).
+**Atenção:** a pasta está dentro do OneDrive. A sincronização pode corromper o banco enquanto o app está aberto. Mova para `C:\Automac_Royalties\` assim que puder (Procedimento 13).
 
 ### 1.2 Instalar em um computador novo
 
@@ -60,7 +60,7 @@ Você só faz isto uma vez por computador.
 
 **Passo a passo**
 
-1. Copie a pasta principal para `C:\CartoGeo\`, **sem** a pasta `aplicativo\.venv`: o ambiente Python é refeito na instalação.
+1. Copie a pasta principal para `C:\Automac_Royalties\`, **sem** a pasta `aplicativo\.venv`: o ambiente Python é refeito na instalação.
    - Para levar os dados junto, mantenha `aplicativo\dados`. As contas existentes continuam valendo, e o instalador não pede conta nova.
    - Para começar sem dados, deixe de fora também `aplicativo\dados`.
 2. Dê dois cliques em `01_INSTALAR.bat`.
@@ -86,8 +86,8 @@ Se o Python não estiver instalado, a janela avisa e para. Nos demais erros, o i
    - verificações do banco;
    - preparação dos cadastros (municípios, cartórios, agenda, lista quente e pesquisas);
    - importação da pasta `dados\importar` (**Pasta importar: … Concluída** ou **nenhum arquivo novo**).
-3. Quando aparecer **CartoGeo Local: http://127.0.0.1:8765 / Mantenha esta janela aberta**, o navegador abre sozinho.
-4. Se o navegador não abrir, digite `http://127.0.0.1:8765` na barra de endereço. Vale salvar esse endereço nos favoritos.
+3. Quando aparecer **Automac_Royalties: http://127.0.0.1:8766 / Mantenha esta janela aberta**, o navegador abre sozinho.
+4. Se o navegador não abrir, digite `http://127.0.0.1:8766` na barra de endereço. Vale salvar esse endereço nos favoritos.
 5. Minimize a janela preta. Não feche: fechar desliga o app e a agenda.
 
 **Mensagens normais na janela preta**
@@ -128,7 +128,7 @@ Hoje todo usuário vê e altera tudo. Não existe perfil só de leitura.
 
 ### 1.7 Celular e outros computadores
 
-Hoje o app só abre no computador onde está rodando: o endereço `127.0.0.1` significa "este computador". O acesso do Gilberto e da equipe está no documento **App CartoGeo para a equipe**.
+Hoje o app só abre no computador onde está rodando: o endereço `127.0.0.1` significa "este computador". O acesso do Gilberto e da equipe está no documento **App Automac_Royalties para a equipe**.
 
 ## Parte 2 — Mapa do app
 
@@ -156,7 +156,7 @@ O menu lateral tem 21 itens. Aqui eles aparecem em sete grupos para facilitar; o
 | Cadastros | **Financeiro** | Recebimentos e despesas | Parcelas previstas, recebidas e despesas | Ao fechar proposta ou receber |
 | Segurança | **Continuidade e evidências** | Acompanhamento e editais | Varredura de editais por capacidade, pacote de acompanhamento, dossiê de fontes | Semanal ou sob demanda |
 | Segurança | **Backup** | Backup e exportação | Backup completo e CSV de oportunidades | Toda sexta |
-| Ajuda | **Guia de uso** | Guia de uso da CartoGeo | O guia resumido dentro do app | Na dúvida rápida |
+| Ajuda | **Guia de uso** | Guia de uso do Automac_Royalties | O guia resumido dentro do app | Na dúvida rápida |
 
 **Elementos que aparecem em todas as telas**
 
@@ -166,7 +166,7 @@ O menu lateral tem 21 itens. Aqui eles aparecem em sete grupos para facilitar; o
   - **Agenda ativa**: as coletas automáticas estão funcionando;
   - **Agenda sem sinal**: a agenda não dá sinal há mais de 6 minutos;
   - **Conexão local interrompida**: a janela preta foi fechada.
-- **Sair · usuário** e a versão (**CartoGeo 0.5.1**), no pé do menu.
+- **Sair · usuário** e a versão (**Automac_Royalties 0.5.1**), no pé do menu.
 - **Guia de uso**, no rodapé da página.
 - Listas longas têm **← Anterior**, **Página X de Y** e **Próxima →**.
 - O item do menu só fica destacado na tela principal da seção. Numa subtela (a ficha de uma oportunidade, por exemplo), nenhum item fica destacado.
@@ -215,7 +215,7 @@ A rotina diária leva cerca de 20 minutos e garante a meta de 10 abordagens por 
 | --- | --- | --- |
 | Dia 20 em diante | Conferir se os royalties do ano atualizaram (a agenda coleta no dia 20, às 9h) | **Royalties** → escolha o ano → linha **Meses incluídos** |
 | Quando a ANP publicar o mês | Baixar a produção por poço do mês novo e importar | Procedimento 8 |
-| Último dia útil | Baixar o relatório do mês | Endereço `http://127.0.0.1:8765/metas/relatorio.md?de=2026-10-01&ate=2026-10-31` (troque as datas) |
+| Último dia útil | Baixar o relatório do mês | Endereço `http://127.0.0.1:8766/metas/relatorio.md?de=2026-10-01&ate=2026-10-31` (troque as datas) |
 | Último dia útil | Conferir planos diretores com **Data a conferir** | **Planos diretores** |
 | Último dia útil | Backup com cópia fora do computador | **Backup** |
 
@@ -346,7 +346,7 @@ Estas são as telas de trabalho diário. A ficha da oportunidade (4A.6) é onde 
 | **Prioridade definida por você** | Não | Alta, Normal ou Baixa. A lista ordena por prioridade e depois por data |
 | **Justificativa da prioridade** | Não | Uma frase: "excedentes de R$ 12 mi e queda de 44% em 2026" |
 | **Problema e evidências** | Não | O problema do cliente com dado público e a fonte. Nunca o método |
-| **Escopo e entregas possíveis** | Não | O que a CartoGeo entregaria |
+| **Escopo e entregas possíveis** | Não | O que o Automac_Royalties entregaria |
 | **Responsável** | Não | Padrão: Uendry |
 | **Decisor ou setor** | Não | Quem decide. Não aparece na ficha, só no formulário |
 | **Capacidade técnica confirmada para este escopo** | Não | Marque só depois de confirmar com a equipe técnica |
@@ -431,7 +431,7 @@ Contato pesquisado entra como **não conferido**. Só depois de conferido ele co
 2. Confirme nome, cargo, e-mail e telefone direto.
 3. Se algum dado mudou, clique em **Editar** ao lado do contato, corrija e salve.
 4. Volte à ficha e clique em **Conferi por telefone**. Aparece **Contato conferido em dd/mm/aaaa. Agora conta como contato qualificado.**
-5. Registre a ligação no histórico como **Nota** (só confirmou dados) ou **Contato realizado** (já apresentou a CartoGeo).
+5. Registre a ligação no histórico como **Nota** (só confirmou dados) ou **Contato realizado** (já apresentou o Automac_Royalties).
 
 Não há botão de desfazer. Para desfazer, **Editar** o contato e apague a data em **Conferido em**.
 
@@ -681,7 +681,7 @@ A situação "produzindo" vem do cadastro da ANP, não da produção mensal. Os 
    - **Total** e **Excedentes / total**.
 4. **↻ Carregar/atualizar série 2021 até hoje (ANP)** baixa todos os anos de novo. Use quando a lista quente mostrar **Aguardando coleta ANP** ou depois de uma revisão da ANP.
 
-A participação especial não está no app. Valor recebido não prova direito a revisão nem receita da CartoGeo. Não há botão de envio de planilha de royalties: a tabela entra pela coleta ou pela pasta `importar` (4C.5).
+A participação especial não está no app. Valor recebido não prova direito a revisão nem receita do Automac_Royalties. Não há botão de envio de planilha de royalties: a tabela entra pela coleta ou pela pasta `importar` (4C.5).
 
 ### 4C.4 Planos diretores
 
@@ -792,7 +792,7 @@ A lista mostra **Conferido: data** ou **Pendente**. Hoje há 15 contatos pesquis
 4. **Pendências e condições** e **Notas e resultado**.
 5. **Salvar ação interna**. Aparece **Planejamento salvo. Nenhuma ação externa foi executada.** Cada edição fica no **Histórico** da tarefa.
 
-Os dois cursos (GNSS e QGIS municipal) já estão aqui. **Baixar resumo para continuar no chat** gera `CONTINUIDADE_CARTOGEO.md` para retomar o trabalho com um assistente de IA.
+Os dois cursos (GNSS e QGIS municipal) já estão aqui. **Baixar resumo para continuar no chat** gera `CONTINUIDADE_AUTOMAC.md` para retomar o trabalho com um assistente de IA.
 
 ### 4D.4 Financeiro
 
@@ -872,7 +872,7 @@ Cada procedimento vai do primeiro clique ao registro final. Siga na ordem; os n�
 
 1. **Radar de oportunidades** → filtro **Revisão: A revisar** → **Aplicar filtros**.
 2. No sinal, clique em **Revisar e decidir →** e depois em **Conferir na fonte**. Leia o original.
-3. Pergunte: é serviço que a CartoGeo entrega? O prazo ainda está aberto? Há comprador identificável?
+3. Pergunte: é serviço que o Automac_Royalties entrega? O prazo ainda está aberto? Há comprador identificável?
 4. Se a organização não existe no app, clique em **Cadastre a organização**, salve e volte ao sinal.
 5. No cartão **Qualificar para acompanhamento**, escolha a **Organização**, confira **Frente**, **Próxima ação** e **Prazo da próxima ação**.
 6. Clique em **Criar oportunidade acompanhável**. A ficha abre com a fonte registrada no histórico.
@@ -906,7 +906,7 @@ Use para indicações, contatos de eventos, empresas e escritórios (atalho **�
 1. **Antes da reunião:** abra a ficha → **Abrir briefing interno**. Leia as perguntas.
 2. **Depois da reunião:** registre **Reunião** no histórico (quem participou, o problema relatado, o que pediram). A etapa passa para **Diagnóstico**.
 3. **Editar oportunidade** e atualize **Problema e evidências**, **Escopo e entregas possíveis**, **Decisor ou setor**, **O que falta para avançar**, **Próxima ação** e prazo.
-4. Confirme com a equipe técnica que a CartoGeo entrega o escopo. Só então marque **Capacidade técnica confirmada para este escopo**.
+4. Confirme com a equipe técnica que o Automac_Royalties entrega o escopo. Só então marque **Capacidade técnica confirmada para este escopo**.
 5. Preencha os três campos de valores e datas:
    - valor estimado da proposta;
    - custo estimado de execução;
@@ -931,7 +931,7 @@ Use para indicações, contatos de eventos, empresas e escritórios (atalho **�
 
 **Relatório de outro período**
 
-1. Na barra de endereço do navegador, digite `http://127.0.0.1:8765/metas/relatorio.md?de=2026-10-01&ate=2026-10-31`.
+1. Na barra de endereço do navegador, digite `http://127.0.0.1:8766/metas/relatorio.md?de=2026-10-01&ate=2026-10-31`.
 2. Troque as datas pelo período (formato ano-mês-dia). Data inválida volta ao padrão (semana atual) sem aviso.
 3. Aperte Enter: o arquivo baixa.
 
@@ -992,7 +992,7 @@ Evite intervalos curtos: as fontes publicam com atraso e o PNCP pode pedir pausa
 
 1. Confira que não há coleta **Coletando**.
 2. **Backup** → **Gerar e baixar backup completo**.
-3. O arquivo `cartogeo-AAAAMMDD-HHMMSS-….zip` baixa. Copie para um pendrive ou pasta do Drive da empresa.
+3. O arquivo `automac-AAAAMMDD-HHMMSS-….zip` baixa. Copie para um pendrive ou pasta do Drive da empresa.
 4. Guarde os 3 backups mais recentes fora do computador.
 
 **Restaurar (só em emergência)**
@@ -1009,7 +1009,7 @@ Evite intervalos curtos: as fontes publicam com atraso e o PNCP pode pedir pausa
 | --- | --- |
 | **A aplicacao ou a restauracao ja esta em execucao. Feche-a primeiro.** | O app está aberto, ou uma coleta roda em segundo plano (inclusive pela agenda do Windows). Feche, espere alguns minutos e repita |
 | **Backup incompleto.** | O ZIP não tem o banco ou a chave. Use outro backup |
-| **Banco corrompido.** ou **Banco incompatível.** | Corrompido: o backup está danificado. Incompatível: o arquivo não é um backup da CartoGeo. Use outro backup e peça ajuda. Backups de versões anteriores são aceitos e atualizados ao abrir o app |
+| **Banco corrompido.** ou **Banco incompatível.** | Corrompido: o backup está danificado. Incompatível: o arquivo não é um backup do Automac_Royalties. Use outro backup e peça ajuda. Backups de versões anteriores são aceitos e atualizados ao abrir o app |
 | **Backup excede o limite de 5 GB.** | Arquivo grande demais. Peça ajuda |
 
 ### Procedimento 13 — Tirar o app do OneDrive
@@ -1018,8 +1018,8 @@ Faça num dia sem pressa. O app fica fora do ar por alguns minutos.
 
 1. Com o app aberto, faça um backup (Procedimento 12) e guarde o ZIP fora do OneDrive.
 2. Feche o app.
-3. Crie a pasta `C:\CartoGeo\`.
-4. **Copie** (não recorte) a pasta principal `CartoGeo_0.4.1` para dentro de `C:\CartoGeo\`.
+3. Crie a pasta `C:\Automac_Royalties\`.
+4. **Copie** (não recorte) a pasta principal `Automac_Royalties_0.4.1` para dentro de `C:\Automac_Royalties\`.
 5. Na nova pasta, abra `02_ABRIR.bat`. Confira a Central, o Funil (o mesmo número de oportunidades da pasta antiga) e os Royalties.
 6. Se usava a agenda do Windows, rode DESATIVAR\_AGENDA\_WINDOWS.bat na pasta antiga e depois `aplicativo\ATIVAR_AGENDA_WINDOWS.bat` na nova pasta.
 7. Atualize o atalho e os favoritos para a nova pasta.
@@ -1047,7 +1047,7 @@ Se a nova pasta não abrir, não apague nada na pasta antiga. Na nova, apague s�
 ### Procedimento 16 — Pedir ajuda técnica
 
 1. Anote o que fez, o que esperava e o que apareceu. Tire um print da tela (`Win+Shift+S`).
-2. Feche o app e rode `aplicativo\DIAGNOSTICO.bat`. Ele gera `DIAGNOSTICO_CARTOGEO.txt` com versão, contagens e últimas coletas, sem contatos nem senhas.
+2. Feche o app e rode `aplicativo\DIAGNOSTICO.bat`. Ele gera `DIAGNOSTICO_AUTOMAC.txt` com versão, contagens e últimas coletas, sem contatos nem senhas.
 3. Se a dúvida for de contexto de trabalho, gere também o pacote em **Continuidade e evidências** → **Gerar pacote de acompanhamento**.
 4. Envie o print, o diagnóstico e o pacote para quem dá suporte ao app.
 
@@ -1059,7 +1059,7 @@ O app foi montado sobre seis regras de ouro do Plano Comercial. Algumas ele apli
 
 ### 6.1 As seis regras de ouro
 
-1. **Mostre o problema com dado público; nunca o método.** O método é o que a CartoGeo vende. Explicado antes do contrato, o cliente pode contratar outro para executá-lo.
+1. **Mostre o problema com dado público; nunca o método.** O método é o que o Automac_Royalties vende. Explicado antes do contrato, o cliente pode contratar outro para executá-lo.
 2. **Nenhum mapa indicativo em material comercial.** Um mapa entrega a tese e pode ser lido como promessa.
 3. **PMRR de Bayeux fora de qualquer peça comercial.**
 4. **Não prometa receita nem resultado administrativo ou judicial.** A decisão é da ANP, do IBGE ou da Justiça.
@@ -1073,7 +1073,7 @@ O app foi montado sobre seis regras de ouro do Plano Comercial. Algumas ele apli
 | Nada é enviado automaticamente | Mensagens, cartórios, relatórios | Toda comunicação externa passa pela sua revisão |
 | Follow-up em D+4 e D+10 | Ao registrar Contato realizado, ou Proposta antes da etapa Proposta enviada | Ninguém fica sem retorno por esquecimento |
 | Etapa avança com a atividade | Contato realizado, Reunião, Proposta | O funil reflete o que aconteceu, não o que você lembrou de atualizar |
-| Filtro de exclusão no PNCP | Coletas e toda abertura do app | Compra de equipamentos, aparelhos, software e frota não é serviço da CartoGeo |
+| Filtro de exclusão no PNCP | Coletas e toda abertura do app | Compra de equipamentos, aparelhos, software e frota não é serviço do Automac_Royalties |
 | Aviso de tese fraca | Gerador de mensagem | Excedente abaixo de 1% do total não sustenta a tese de confrontação |
 | Aviso de dado faltando | Gerador de mensagem | Mensagem com \[valor\] não pode sair |
 | Destinatário escolhido pelo cargo | Gerador de mensagem | Royalties vai para Procuradoria e Fazenda; planos diretores para Planejamento e Urbanismo |
@@ -1088,7 +1088,7 @@ O app foi montado sobre seis regras de ouro do Plano Comercial. Algumas ele apli
 - **Aderência não é probabilidade.** A nota do Radar conta palavras. Um sinal com 95 pode não servir; um com 40 pode ser o melhor da semana.
 - **Produção de um campo não diz qual município é confrontante.** Não associe poço a município em material comercial.
 - **"Produzindo" é a situação do cadastro**, não a produção do mês.
-- **Excedentes recebidos não provam direito a revisão** nem receita para a CartoGeo.
+- **Excedentes recebidos não provam direito a revisão** nem receita para o Automac_Royalties.
 - **A participação especial ainda não está no app.** Não afirme valores dela com base no app.
 - **Cartório é canal de indicação**, não comprador. Contatos de cartório não contam na meta de contatos qualificados.
 - **Lista vazia no Radar não prova ausência de oportunidade.** Pode ser o filtro ou uma fonte fora do ar: confira **Fontes e cobertura**.
@@ -1164,7 +1164,7 @@ Procure a mensagem ou o sintoma na primeira coluna. Se nada resolver, siga o Pro
 - **Abrir no e-mail** pode cortar textos longos em alguns programas; use **Copiar texto**.
 - O app só abre no computador em que roda.
 
-Quase todos estes itens estão no plano de melhorias do documento **App CartoGeo para a equipe**.
+Quase todos estes itens estão no plano de melhorias do documento **App Automac_Royalties para a equipe**.
 
 ## Glossário, arquivos e pastas
 
@@ -1187,11 +1187,11 @@ Quase todos estes itens estão no plano de melhorias do documento **App CartoGeo
 | Etapa | Posição da oportunidade no funil (11 etapas, de Identificada a Perdida) |
 | Excedentes | Parcela dos royalties acima de 5%, pela Lei 9.478/97. É onde a confrontação atua |
 | Executor / agenda | A parte do app que roda as coletas nos horários marcados |
-| Frente | Linha de serviço da CartoGeo (royalties, REURB, SIGEF, capacitação e outras) |
+| Frente | Linha de serviço do Automac_Royalties (royalties, REURB, SIGEF, capacitação e outras) |
 | Lista quente | Alvos priorizados pelo Plano Comercial |
 | Marco de revisão | Data em que o plano diretor deve ser revisto: prazo local ou data-base + 10 anos |
 | Mil m³/dia (Mm³/dia) | Milhares de metros cúbicos de gás por dia |
-| NUPEC | Rota de contratação por meio do NUPEC, alternativa à contratação direta da CartoGeo |
+| NUPEC | Rota de contratação por meio do NUPEC, alternativa à contratação direta do Automac_Royalties |
 | Oportunidade | Um alvo trabalhado no funil, ligado a uma organização |
 | Participação especial | Compensação paga por campos de grande produção. Ainda não está no app |
 | PNCP | Portal Nacional de Contratações Públicas, fonte das licitações |
@@ -1208,9 +1208,9 @@ Quase todos estes itens estão no plano de melhorias do documento **App CartoGeo
 | `01_INSTALAR.bat` | Instalador | Só em computador novo |
 | `02_ABRIR.bat` | Abre o app | Sim, todo dia |
 | `aplicativo\RESTAURAR.bat` | Restaura um backup | Só em emergência, com o app fechado |
-| `aplicativo\DIAGNOSTICO.bat` | Gera `DIAGNOSTICO_CARTOGEO.txt` | Sim |
+| `aplicativo\DIAGNOSTICO.bat` | Gera `DIAGNOSTICO_AUTOMAC.txt` | Sim |
 | `aplicativo\ATIVAR_AGENDA_WINDOWS.bat` e `DESATIVAR_AGENDA_WINDOWS.bat` | Ligam e desligam a agenda com o app fechado | Sim |
-| `aplicativo\dados\cartogeo.sqlite3` | O banco de dados com todo o seu trabalho | Não. Nunca abra, copie ou apague com o app aberto |
+| `aplicativo\dados\automac.sqlite3` | O banco de dados com todo o seu trabalho | Não. Nunca abra, copie ou apague com o app aberto |
 | `aplicativo\dados\secret.key` | Chave do app | Não |
 | `aplicativo\dados\importar\` | Pasta para arquivos oficiais baixados por você | Sim: coloque arquivos aqui |
 | `aplicativo\dados\backups\` | Backups gerados | Sim: copie para fora e limpe os antigos |
@@ -1225,10 +1225,10 @@ Quase todos estes itens estão no plano de melhorias do documento **App CartoGeo
 
 | Endereço | Abre |
 | --- | --- |
-| `http://127.0.0.1:8765/` | Central de operação |
-| `http://127.0.0.1:8765/lista-quente/` | Lista quente — Frente 1 |
-| `http://127.0.0.1:8765/metas/` | Metas e relatório |
-| `http://127.0.0.1:8765/metas/relatorio.md?de=AAAA-MM-DD&ate=AAAA-MM-DD` | Relatório de qualquer período |
-| `http://127.0.0.1:8765/radar/` | Radar de oportunidades |
-| `http://127.0.0.1:8765/pocos/producao/` | Importar produção mensal |
-| `http://127.0.0.1:8765/ajuda/` | Guia de uso |
+| `http://127.0.0.1:8766/` | Central de operação |
+| `http://127.0.0.1:8766/lista-quente/` | Lista quente — Frente 1 |
+| `http://127.0.0.1:8766/metas/` | Metas e relatório |
+| `http://127.0.0.1:8766/metas/relatorio.md?de=AAAA-MM-DD&ate=AAAA-MM-DD` | Relatório de qualquer período |
+| `http://127.0.0.1:8766/radar/` | Radar de oportunidades |
+| `http://127.0.0.1:8766/pocos/producao/` | Importar produção mensal |
+| `http://127.0.0.1:8766/ajuda/` | Guia de uso |

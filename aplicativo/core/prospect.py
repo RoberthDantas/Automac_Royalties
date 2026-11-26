@@ -185,7 +185,11 @@ def build_messages(o, user=None):
     contacts = list(o.organization.contacts.filter(do_not_contact=False))
     lead = next((c for c in contacts if 'procurador' in (c.position or '').lower()), contacts[0] if contacts else None)
     greeting = f'Prezado(a) {lead.name},' if lead and lead.name and not lead.name.lower().startswith(('atendimento', 'gabinete', 'administra')) else 'Prezados,'
-    sign = f'\n\nAtenciosamente,\n{name}\nCartoGeo | Inteligência Territorial\nCabedelo/PB · cartogeo.org'
+    from django.conf import settings as cfg
+    org = cfg.ORG_NAME
+    where = f', de {cfg.ORG_PLACE}' if cfg.ORG_PLACE else ''
+    extra = ' · '.join(x for x in (cfg.ORG_PLACE, cfg.ORG_SITE) if x)
+    sign = f'\n\nAtenciosamente,\n{name}\n{org} | {cfg.ORG_TAGLINE}' + (f'\n{extra}' if extra else '')
     warnings = []
     if name == PLACEHOLDER:
         warnings.append('Sua conta não tem nome completo cadastrado: o texto sai com [seu nome]. '
@@ -209,15 +213,14 @@ def build_messages(o, user=None):
             recent = (f' De {names[months[0] - 1]} a {names[months[-1] - 1]} de {last}, a parcela acima de 5% somou {brl_mi(y["cur"])}, '
                       f'{abs(y["pct"]):.0f}% {direction} do mesmo período de {last - 1}.')
         subject = f'Royalties de petróleo de {mun.name}: leitura dos dados públicos da ANP (2021–2025)'
-        body = (f'{greeting}\n\nSou {name}, da CartoGeo, empresa de inteligência territorial sediada em Cabedelo/PB.\n\n'
+        body = (f'{greeting}\n\nSou {name}, da {org}{where}, e acompanho a distribuição de royalties de petróleo aos municípios.\n\n'
                 f'Analisamos os dados públicos da ANP sobre a distribuição de royalties aos municípios do Nordeste. Entre 2021 e 2025, '
                 f'{mun.name} recebeu {f["total"]} em royalties; desse total, {f["excess"]} ({f["pct"]}%) vieram da parcela acima de 5%, '
                 f'que depende do enquadramento do município em relação à produção marítima.{recent}\n\n'
-                f'Esse enquadramento tem base cartográfica e geodésica. A CartoGeo, coordenada por um doutor em geodésia, faz a análise técnica '
-                f'desse tipo de caso para procuradorias municipais.\n\n'
+                f'Esse enquadramento tem base cartográfica e geodésica, e a leitura técnica dos dados ajuda a Procuradoria a decidir se vale aprofundar o caso.\n\n'
                 f'Gostaria de apresentar à Procuradoria, em uma conversa de 20 minutos, o panorama dos números de {mun.name}. '
                 f'Há disponibilidade na próxima semana?' + sign)
-        call = (f'1. Apresentação: "Sou {first}, da CartoGeo, de Cabedelo. Trabalhamos com inteligência territorial para municípios."\n'
+        call = (f'1. Apresentação: "Sou {first}, da {org}{where}. Acompanhamos os royalties de petróleo dos municípios."\n'
                 f'2. Motivo: "Analisamos os royalties que {mun.name} recebeu da ANP de 2021 a 2025: {f["total"]}, sendo {f["excess"]} na parcela acima de 5%."\n'
                 f'3. Pergunta: "Quem na Procuradoria acompanha os royalties do município?"\n'
                 f'4. Pedido: "Posso enviar um resumo por e-mail e marcar 20 minutos para apresentar os números?"\n'
@@ -231,12 +234,11 @@ def build_messages(o, user=None):
         else:
             context = (o.problem or '').split('\n')[0]
         subject = f'{mun.name if mun else o.organization.name}: base cartográfica e apoio técnico ao planejamento territorial'
-        body = (f'{greeting}\n\nSou {name}, da CartoGeo, empresa de inteligência territorial sediada em Cabedelo/PB.\n\n{context}\n\n'
-                f'A CartoGeo produz base cartográfica atualizada, diagnóstico territorial, cadastro e mapeamento de risco para prefeituras, '
-                f'com equipe de geoprocessamento e geodésia na Paraíba.\n\n'
+        body = (f'{greeting}\n\nSou {name}, da {org}{where}.\n\n{context}\n\n'
+                f'Trabalhamos com base cartográfica atualizada e diagnóstico territorial para apoiar o planejamento das prefeituras.\n\n'
                 f'Gostaria de apresentar, em uma conversa de 20 minutos, como esse trabalho apoia {("a revisão do plano e " if plan else "")}as decisões da secretaria. '
                 f'Há disponibilidade na próxima semana?' + sign)
-        call = (f'1. Apresentação: "Sou {first}, da CartoGeo, de Cabedelo. Trabalhamos com inteligência territorial para municípios."\n'
+        call = (f'1. Apresentação: "Sou {first}, da {org}{where}. Trabalhamos com dados territoriais para municípios."\n'
                 f'2. Motivo: {context}\n'
                 '3. Pergunta: "Quem na prefeitura conduz o planejamento urbano e a base cartográfica?"\n'
                 '4. Pedido: "Posso enviar um resumo e marcar 20 minutos?"\n'

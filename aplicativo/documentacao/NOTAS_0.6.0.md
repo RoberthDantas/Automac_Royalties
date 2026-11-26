@@ -1,4 +1,4 @@
-# CartoGeo 0.6.0 — melhorias (07/11/2026)
+# Automac_Royalties 0.6.0 — melhorias (07/11/2026)
 
 Primeira versão sob administração de Roberth Dantas Gomes. Inclui as correções da 0.5.3. A base de dados recebe uma
 migração (datas de mudança de etapa e de revisão de sinais); o app faz backup sozinho antes de aplicá-la.
@@ -33,7 +33,7 @@ migração (datas de mudança de etapa e de revisão de sinais); o app faz backu
 
 ## Como atualizar uma instalação em uso
 
-1. Extraia `CartoGeo_0.6.0_atualizacao.zip` em uma pasta nova.
+1. Extraia `Automac_Royalties_0.6.0_atualizacao.zip` em uma pasta nova.
 2. Feche o app e rode `05_ATUALIZAR.bat` dessa pasta nova, informando a pasta instalada.
 3. Abra `02_ABRIR.bat` na pasta instalada.
 4. Se usava a agenda do Windows, rode `aplicativo\ATIVAR_AGENDA_WINDOWS.bat` de novo.

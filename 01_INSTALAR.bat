@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-echo CARTOGEO 0.6.0 - INSTALACAO
+echo AUTOMAC_ROYALTIES 0.6.0 - INSTALACAO
 echo Execute somente depois de extrair o ZIP para uma pasta nova.
 py -3.14 -c "import sys;print('CGOK' if sys.version_info[:2]==(3,14) else 'NAO')" 2>nul | findstr CGOK >nul
 if not errorlevel 1 goto py314

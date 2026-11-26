@@ -7,7 +7,7 @@ def main():
     if not (3,12)<=sys.version_info[:2]<=(3,14):raise RuntimeError('Use Python 3.12, 3.13 ou 3.14.')
     os.chdir(ROOT)
     # Data always belongs to this extracted folder, regardless of previous setup.
-    os.environ['CARTOGEO_DATA_DIR']=str(ROOT/'dados')
+    os.environ['AUTOMAC_DATA_DIR']=str(ROOT/'dados')
     python=ROOT/'.venv'/('Scripts/python.exe' if os.name=='nt' else 'bin/python')
     print('\n[1/4] Preparando o Python local...',flush=True)
     if not python.is_file():subprocess.run([sys.executable,'-m','venv',str(ROOT/'.venv')],check=True)

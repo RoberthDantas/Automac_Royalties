@@ -5,7 +5,7 @@ import socket
 import threading
 import webbrowser
 from pathlib import Path
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','cartogeo.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','automac.settings')
 import django
 django.setup()
 from django.conf import settings
@@ -36,7 +36,7 @@ if __name__=='__main__':
     setup_dispatch_lock=local_lock('dispatch.lock')
     setup_collection_lock=local_lock('collection.lock')
     # Keep a recoverable copy before an installed update changes the schema.
-    if (settings.DATA_DIR/'cartogeo.sqlite3').exists():
+    if (settings.DATA_DIR/'automac.sqlite3').exists():
         from django.db import connection
         from django.db.migrations.executor import MigrationExecutor
         executor=MigrationExecutor(connection)
@@ -68,7 +68,7 @@ if __name__=='__main__':
     from core.scheduling import start_scheduler
     start_scheduler()
     from waitress import serve
-    from cartogeo.wsgi import application
-    print('\nAutomac_Royalties: http://127.0.0.1:8765\nMantenha esta janela aberta. Para encerrar, pressione Ctrl+C.\n')
-    threading.Timer(1.5,lambda:webbrowser.open('http://127.0.0.1:8765')).start()
-    serve(application,host='127.0.0.1',port=8765,threads=4,max_request_body_size=28*1024*1024)
+    from automac.wsgi import application
+    print('\nAutomac_Royalties: http://127.0.0.1:8766\nMantenha esta janela aberta. Para encerrar, pressione Ctrl+C.\n')
+    threading.Timer(1.5,lambda:webbrowser.open('http://127.0.0.1:8766')).start()
+    serve(application,host='127.0.0.1',port=8766,threads=4,max_request_body_size=28*1024*1024)

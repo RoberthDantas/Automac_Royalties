@@ -24,7 +24,7 @@ def state_report(context='Estado da instalação que gerou este arquivo'):
         'overdue':bool(o.next_date and o.next_date<today and o.stage not in ['concluida','suspensa','perdida']),
         'updated_at':o.updated_at} for o in Opportunity.objects.order_by('pk')]
     jobs=list(CollectionJob.objects.order_by('-pk')[:30].values('id','source','status','parameters','summary','created_at','finished_at'))
-    return {'schema':'cartogeo.acompanhamento.v1','generated_at_utc':timezone.now(),'version':settings.VERSION,'context':context,
+    return {'schema':'automac.acompanhamento.v1','generated_at_utc':timezone.now(),'version':settings.VERSION,'context':context,
         'plans':plans,'opportunities':opportunities,'recent_jobs':jobs,
         'schedules':list(CollectionSchedule.objects.values('name','source','enabled','frequency','next_run','last_run','last_job_id')),
         'watched_sources':list(WatchedPage.objects.values('title','url','active','last_status','last_error','last_success_at')),
@@ -34,7 +34,7 @@ def state_report(context='Estado da instalação que gerou este arquivo'):
                   'O resumo lista até 30 coletas; o dossiê inclui todas as coletas e fontes disponíveis.']}
 
 def report_markdown(report):
-    lines=['# CartoGeo acompanhamento',f"Versão {report['version']} | Gerado {report['generated_at_utc']}",report['context'],
+    lines=['# Automac_Royalties acompanhamento',f"Versão {report['version']} | Gerado {report['generated_at_utc']}",report['context'],
         'Uso interno. Anexar ao chat para que o assistente analise o estado atualizado.',
         'Regras: decisões comerciais com a direção; sem mapas em peças comerciais; não reconstruir o método das ortogonais.',
         '\n## Tarefas internas']
@@ -59,7 +59,7 @@ def build_bundle(evidence=False,context='Estado da instalação que gerou este a
     report=state_report(context);folder=settings.DATA_DIR/('dossies' if evidence else 'acompanhamento');folder.mkdir(exist_ok=True)
     stamp=timezone.now().strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8]
     path=folder/(('dossie-' if evidence else 'acompanhamento-')+stamp+'.zip')
-    manifest={'schema':'cartogeo.manifesto.v1','generated_at_utc':str(timezone.now()),'app_version':settings.VERSION,
+    manifest={'schema':'automac.manifesto.v1','generated_at_utc':str(timezone.now()),'app_version':settings.VERSION,
               'purpose':'Rastreabilidade interna; não é autenticação notarial, assinatura digital ou prova jurídica conclusiva.',
               'context':context,'files':[]}
     try:

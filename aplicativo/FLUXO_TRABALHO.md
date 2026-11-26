@@ -1,10 +1,10 @@
-# Fluxo de trabalho CartoGeo — menos repetição, mais execução
+# Fluxo de trabalho Automac_Royalties — menos repetição, mais execução
 
 ## Abrir uma sessão
 
 Envie o objetivo da rodada e o resumo baixado em **Planejamento interno → Baixar resumo para continuar no chat**. Quando houver erro, acrescente o diagnóstico e o trecho completo do erro. Não reenvie o histórico inteiro ou bases já presentes no pacote.
 
-Exemplo: “Continuar CartoGeo 0.2.0. Objetivo: validar a fonte técnica da LBR. Resumo anexo. Trabalhar internamente; registrar resultados e pendências.”
+Exemplo: “Continuar Automac_Royalties 0.2.0. Objetivo: validar a fonte técnica da LBR. Resumo anexo. Trabalhar internamente; registrar resultados e pendências.”
 
 ## Executar uma rodada
 

@@ -131,7 +131,7 @@ def pulse(request):
 @login_required
 def daily_brief(request):
     today=timezone.localdate();signals=Signal.objects.filter(status='novo').select_related('municipality').order_by('-relevance','-collected_at')[:30]
-    lines=[f'# CartoGeo — briefing interno de {today}', '', 'Sinais de triagem; confirmar demanda e habilitação. Não enviar contatos automaticamente.', '', '## Sinais prioritários']
+    lines=[f'# Automac_Royalties — briefing interno de {today}', '', 'Sinais de triagem; confirmar demanda e habilitação. Não enviar contatos automaticamente.', '', '## Sinais prioritários']
     for s in signals:
         lines+=['',f'### {s.title}',f'- Origem: {s.source_type}; publicação: {s.publication_date or "não identificada"}; primeira coleta: {s.collected_at.isoformat()}',
                 f'- Fonte: {s.source_url}',f'- Prazo: {s.deadline or "não identificado"}; revisão: {s.get_status_display()}',f'- Motivo: {s.reason}']
@@ -139,4 +139,4 @@ def daily_brief(request):
     for p in InternalPlan.objects.exclude(status__in=['concluido','suspenso']):lines.append(f'- {p.title}: {p.next_action} — {p.owner}, {p.due_date or "sem prazo"}. Pendências: {p.blockers}')
     lines+=['','## Últimas coletas']
     for j in CollectionJob.objects.all()[:10]:lines.append(f'- {j.source}: {j.get_status_display()} — {j.summary}')
-    r=HttpResponse('\n'.join(lines),content_type='text/markdown; charset=utf-8');r['Content-Disposition']=f'attachment; filename="CartoGeo_Briefing_{today}.md"';return r
+    r=HttpResponse('\n'.join(lines),content_type='text/markdown; charset=utf-8');r['Content-Disposition']=f'attachment; filename="Automac_Royalties_Briefing_{today}.md"';return r

@@ -1,8 +1,8 @@
-"""Gera uma versão nova da CartoGeo: confere, testa e empacota.
+"""Gera uma versão nova do Automac_Royalties: confere, testa e empacota.
 
 Uso (de dentro da pasta aplicativo, com o Python do .venv):
     .venv\\Scripts\\python.exe scripts\\gerar_versao.py 0.6.1
-    .venv\\Scripts\\python.exe scripts\\gerar_versao.py 0.6.1 --com-dados C:\\CartoGeo\\aplicativo\\dados
+    .venv\\Scripts\\python.exe scripts\\gerar_versao.py 0.6.1 --com-dados C:\\Automac_Royalties\\aplicativo\\dados
 
 Passos:
  1. confere o número (X.Y.Z) e se existe documentacao/NOTAS_X.Y.Z.md;
@@ -10,8 +10,8 @@ Passos:
  3. grava o número em settings.py, 01_INSTALAR.bat e COMECE_AQUI.txt;
  4. roda todos os testes (para se algum falhar);
  5. gera em dist/:
-    - CartoGeo_X.Y.Z_atualizacao.zip  -> só o programa; serve para 05_ATUALIZAR.bat
-    - CartoGeo_X.Y.Z_completo.zip     -> programa + uma cópia da base (só com --com-dados), para instalar do zero
+    - Automac_Royalties_X.Y.Z_atualizacao.zip  -> só o programa; serve para 05_ATUALIZAR.bat
+    - Automac_Royalties_X.Y.Z_completo.zip     -> programa + uma cópia da base (só com --com-dados), para instalar do zero
     - o SHA-256 de cada ZIP.
  Depois: git commit, git tag vX.Y.Z e git push (o script mostra os comandos).
 """
@@ -35,9 +35,9 @@ DATA_SKIP_DIRS = {'logs', 'backups'}
 
 def set_version(version):
     edits = [
-        (APP / 'cartogeo' / 'settings.py', r"VERSION = '[^']+'", f"VERSION = '{version}'"),
-        (ROOT / '01_INSTALAR.bat', r'CARTOGEO [0-9.]+ - INSTALACAO', f'CARTOGEO {version} - INSTALACAO'),
-        (ROOT / 'COMECE_AQUI.txt', r'CARTOGEO [0-9.]+ — COMECE AQUI', f'CARTOGEO {version} — COMECE AQUI'),
+        (APP / 'automac' / 'settings.py', r"VERSION = '[^']+'", f"VERSION = '{version}'"),
+        (ROOT / '01_INSTALAR.bat', r'AUTOMAC_ROYALTIES [0-9.]+ - INSTALACAO', f'AUTOMAC_ROYALTIES {version} - INSTALACAO'),
+        (ROOT / 'COMECE_AQUI.txt', r'AUTOMAC_ROYALTIES [0-9.]+ — COMECE AQUI', f'AUTOMAC_ROYALTIES {version} — COMECE AQUI'),
     ]
     for path, pattern, repl in edits:
         raw = path.read_bytes()
@@ -55,7 +55,7 @@ def program_files():
         for name in sorted(files):
             if name in SKIP_FILES or name.endswith('.pyc'):
                 continue
-            yield Path(folder) / name, Path('CartoGeo') / rel / name
+            yield Path(folder) / name, Path('Automac_Royalties') / rel / name
 
 
 def data_files(data_dir):
@@ -65,7 +65,7 @@ def data_files(data_dir):
         for name in sorted(files):
             if name in DATA_SKIP or name.endswith(('-wal', '-shm', '-journal')):
                 continue
-            yield Path(folder) / name, Path('CartoGeo/aplicativo/dados') / rel / name
+            yield Path(folder) / name, Path('Automac_Royalties/aplicativo/dados') / rel / name
 
 
 def write_zip(target, entries):
@@ -88,7 +88,7 @@ def git(*args):
 
 
 def main():
-    ap = argparse.ArgumentParser(description='Gera uma versão nova da CartoGeo.')
+    ap = argparse.ArgumentParser(description='Gera uma versão nova do Automac_Royalties.')
     ap.add_argument('versao', help='Número no formato X.Y.Z, ex.: 0.6.1')
     ap.add_argument('--com-dados', metavar='PASTA', help='Pasta dados de uma instalação, para gerar também o pacote completo.')
     ap.add_argument('--sem-testes', action='store_true', help='Pula os testes (não recomendado).')
@@ -113,18 +113,18 @@ def main():
     print('[2/3] Testes aprovados.' if not a.sem_testes else '[2/3] Testes pulados.')
 
     dist = ROOT / 'dist'
-    up = dist / f'CartoGeo_{a.versao}_atualizacao.zip'
+    up = dist / f'Automac_Royalties_{a.versao}_atualizacao.zip'
     n, digest = write_zip(up, program_files())
     print(f'[3/3] {up.relative_to(ROOT)}: {n} arquivos · SHA-256 {digest}')
     if a.com_dados:
         data_dir = Path(a.com_dados).resolve()
-        if not (data_dir / 'cartogeo.sqlite3').exists():
-            raise SystemExit(f'Não achei cartogeo.sqlite3 em {data_dir}.')
-        full = dist / f'CartoGeo_{a.versao}_completo.zip'
+        if not (data_dir / 'automac.sqlite3').exists():
+            raise SystemExit(f'Não achei automac.sqlite3 em {data_dir}.')
+        full = dist / f'Automac_Royalties_{a.versao}_completo.zip'
         n, digest = write_zip(full, list(program_files()) + list(data_files(data_dir)))
         print(f'      {full.relative_to(ROOT)}: {n} arquivos · SHA-256 {digest}')
         print('      Atenção: o pacote completo leva contatos e histórico. Guarde e envie só por canal restrito.')
-    print(f'\nPróximos passos:\n  git add -A\n  git commit -m "CartoGeo {a.versao}"\n  git tag v{a.versao}\n  git push --follow-tags')
+    print(f'\nPróximos passos:\n  git add -A\n  git commit -m "Automac_Royalties {a.versao}"\n  git tag v{a.versao}\n  git push --follow-tags')
 
 
 if __name__ == '__main__':

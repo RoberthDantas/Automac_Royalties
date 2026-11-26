@@ -1,4 +1,4 @@
-# Guia completo da CartoGeo Local (0.5.1)
+# Guia completo da Automac_Royalties (0.5.1)
 
 O app existe para uma coisa: transformar dado público em abordagem registrada. Tudo o que você faz nele deve terminar em uma próxima ação com data.
 
@@ -25,11 +25,11 @@ O app existe para uma coisa: transformar dado público em abordagem registrada. 
 
 ## 2. Abrir, fechar e proteger
 
-- **Abrir:** dois cliques em `02_ABRIR.bat`. O navegador abre em `http://127.0.0.1:8765`. Mantenha a janela preta aberta.
+- **Abrir:** dois cliques em `02_ABRIR.bat`. O navegador abre em `http://127.0.0.1:8766`. Mantenha a janela preta aberta.
 - **Fechar:** feche a janela preta (ou Ctrl+C nela). Feche o app antes de qualquer atualização.
 - **Backup:** menu **Backup** → baixar. Para voltar um backup: `RESTAURAR.bat`, dentro da pasta `aplicativo`.
 - **Diagnóstico:** `DIAGNOSTICO.bat` gera um resumo técnico sem contatos nem senhas, útil para pedir ajuda.
-- **Onde guardar:** fora do OneDrive (por exemplo, `C:\CartoGeo`). Sincronização em nuvem com o banco aberto pode corromper os dados.
+- **Onde guardar:** fora do OneDrive (por exemplo, `C:\Automac_Royalties`). Sincronização em nuvem com o banco aberto pode corromper os dados.
 
 ## 3. Central de operação
 

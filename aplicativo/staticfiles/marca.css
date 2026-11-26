@@ -1,0 +1,50 @@
+/* Automac_Royalties — identidade visual (carregado depois de app.css).
+   Paleta: petróleo #0D2B30 · mar #0F6B66 · âmbar #E39A2C · areia #F6F4EF.
+   Tipografia: Bahnschrift (já vem no Windows) nos títulos; Segoe UI no texto. Sem fontes da internet. */
+:root{--petroleo:#0D2B30;--petroleo-2:#163A40;--mar:#0F6B66;--mar-escuro:#0B5450;--mar-claro:#E3F0EE;--ambar:#E39A2C;--ambar-claro:#FBF0DE;--areia:#F6F4EF;--linha:#E3E0D8;--ink:#13262B;--muted:#5E6E70;--blue:var(--mar);--border:var(--linha);--bg:var(--areia)}
+body{background:var(--areia);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+h1,h2,h3,.metric,.brand,.hero h2,.score{font-family:Bahnschrift,"DIN Alternate","Segoe UI",system-ui,sans-serif}
+h1{color:var(--petroleo);letter-spacing:-.4px;font-weight:600}h2{color:var(--petroleo);letter-spacing:-.2px;font-weight:600}h3{color:var(--petroleo-2)}
+a{color:var(--mar)}a:hover{color:var(--mar-escuro)}
+/* Menu lateral escuro */
+aside{background:var(--petroleo);color:#C9D6D5;border-right:0}
+.brand{flex-direction:row;gap:10px;align-items:center;justify-content:flex-start;padding:4px 6px 2px}
+.brand svg{width:44px;height:44px;flex-shrink:0}
+.brand .wm{display:flex;flex-direction:column;line-height:1.05}
+.brand .wm{min-width:0}
+.brand .wm b{font-size:19px;font-weight:700;color:#FFFFFF;letter-spacing:.2px;display:flex;flex-direction:column;line-height:1.02}
+.brand .wm b em{font-style:normal;color:var(--ambar)}
+.brand .wm>span{white-space:nowrap;font-family:"Segoe UI",system-ui,sans-serif;font-size:8px;letter-spacing:1px;margin-top:5px;color:#8FB1AE;text-transform:uppercase}
+.mode{color:#7E9C9A}.mode b{color:var(--ambar)}
+nav a{color:#B9CBCA;border-left:3px solid transparent}
+nav a.active,nav a:hover{background:var(--petroleo-2);color:#FFFFFF;border-left-color:var(--ambar)}
+.sidebar-bottom{border-top:1px solid #24474D}aside small{color:#7E9C9A}aside a{color:#CFE3E0}
+/* Cabeçalho */
+header{border-bottom:1px solid var(--linha);color:#6C7B7C}.breadcrumb b{color:#C9C3B6}
+.live-label{background:#ECE9E1;color:#5E6E70}.live-label.active{background:var(--mar-claro);color:var(--mar-escuro)}
+/* Botões e campos */
+button,.button{background:var(--mar)}button:hover,.button:hover{background:var(--mar-escuro);box-shadow:0 2px 8px #0f6b6633}
+.secondary{background:#ECE9E1;color:var(--petroleo-2)}.secondary:hover{background:#E2DED3}
+.mini-button{background:var(--mar-claro);color:var(--mar-escuro)}
+input,select,textarea{border-color:#D6D1C6}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--ambar);outline-offset:2px}
+/* Cartões, avisos e números */
+.card{border-color:var(--linha);box-shadow:0 1px 2px #0d2b300a}
+.notice{background:var(--ambar-claro);border-color:#F0DDB9;color:#5A4420}
+.metric{color:var(--petroleo)}.stat:hover{border-color:#9CC9C3}
+.tag{background:var(--mar-claro);color:var(--mar-escuro)}
+th{background:#F1EEE7;color:#5E6E70}
+.status.running,.status.queued{background:var(--mar-claro);color:var(--mar-escuro)}
+.score{color:var(--mar)}.dot{background:var(--ambar)}.task-dot.blue{background:var(--mar)}
+.radar-note{background:#EFECE4;color:#5E6E70}
+.signal-card blockquote{background:#F7F5F0;border-left-color:var(--ambar)}
+summary{color:var(--mar)}
+/* Faixa de destaque da página inicial */
+.hero{background:linear-gradient(118deg,var(--petroleo) 0%,#114A4E 55%,var(--mar) 100%);color:#D5E6E4}
+.hero:after{content:'';position:absolute;left:0;bottom:0;width:100%;height:4px;background:var(--ambar)}
+.hero .eyebrow{color:var(--ambar)}.hero .white{color:var(--mar-escuro)}
+.hero-orbit,.hero-orbit:before{border-color:#E39A2C40}.hero-orbit div{border-color:#ffffff40}
+footer{border-top-color:var(--linha);color:#8A9596}
+.toast{background:var(--petroleo)}
+@media(max-width:850px){aside{box-shadow:5px 0 30px #0006}}
+.brand .wm b .wm1{font:inherit;letter-spacing:inherit;color:inherit;margin:0;text-transform:none}

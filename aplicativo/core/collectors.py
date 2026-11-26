@@ -86,7 +86,7 @@ def fetch(url,job,extension='bin',*,timeout=35,attempts=3,progress=''):
     validate_remote(url)
     opener=urllib.request.build_opener(PublicRedirect())
     tls_mode='padrão'
-    req=urllib.request.Request(url,headers={'User-Agent':'CartoGeoLocal/0.4 (public data research)', 'Accept-Encoding':'gzip'})
+    req=urllib.request.Request(url,headers={'User-Agent':'AutomacRoyalties/0.6 (public data research)', 'Accept-Encoding':'gzip'})
     started_at=timezone.now().isoformat()
     for attempt in range(attempts):
         if progress:
@@ -275,7 +275,7 @@ def collect_anp(job):
     if alias_audit:summary+=f'{len(alias_audit)} denominações conciliadas por correspondência explícita: '+'; '.join(alias_audit)+'.'
     return summary,bool(unmatched)
 
-# 0.4.2: objetos que citam termos técnicos, mas são compra de bens ou software — fora do escopo de serviços da CartoGeo.
+# 0.4.2: objetos que citam termos técnicos, mas são compra de bens ou software — fora do escopo de serviços do Automac_Royalties.
 EXCLUDE_TERMS=('aquisicao de equipamento','aquisicao de equipamentos','aquisicao de instrumento','aquisicao de instrumentos',
  'aquisicao de aparelho','aquisicao de aparelhos','aquisicao de material','aquisicao de materiais','aquisicao de veiculo','aquisicao de veiculos',
  'aquisicao de drone','aquisicao de drones','aquisicao de estacao total','aquisicao de receptor','aquisicao de receptores',
@@ -415,7 +415,7 @@ def _start_job(source,parameters):
         raise ValueError('Já há uma coleta em andamento. Aguarde terminar; se ela travou, feche e abra o app (02_ABRIR.bat) que a execução interrompida é encerrada sozinha.')
     job=CollectionJob.objects.create(source=source,parameters=parameters)
     log_dir=settings.DATA_DIR/'logs';log_dir.mkdir(exist_ok=True)
-    env=os.environ.copy();env['CARTOGEO_DATA_DIR']=str(settings.DATA_DIR)
+    env=os.environ.copy();env['AUTOMAC_DATA_DIR']=str(settings.DATA_DIR)
     try:
         with (log_dir/f'coleta-{job.pk}.log').open('ab') as log:
             subprocess.Popen([sys.executable,str(settings.BASE_DIR/'manage.py'),'collect_job',str(job.pk)],cwd=settings.BASE_DIR,env=env,stdout=log,stderr=log,

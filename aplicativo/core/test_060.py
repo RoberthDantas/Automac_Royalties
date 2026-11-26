@@ -145,5 +145,5 @@ class BackupLockTests(TestCase):
         dest = create_backup()
         with zipfile.ZipFile(dest) as z:
             self.assertFalse([n for n in z.namelist() if n.endswith('.lock')])
-            self.assertIn('cartogeo.sqlite3', z.namelist())
+            self.assertIn('automac.sqlite3', z.namelist())
         dest.unlink()

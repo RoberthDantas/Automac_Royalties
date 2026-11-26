@@ -131,7 +131,7 @@ def wells_xlsx(request):
     qs=filtered_wells(request).order_by('uf','field','name')
     wb=Workbook();summary=wb.active;summary.title='Resumo por UF'
     bold=Font(bold=True)
-    summary.append(['Cadastro de poços ANP — CartoGeo',None]);summary['A1'].font=Font(bold=True,size=13)
+    summary.append(['Cadastro de poços ANP — Automac_Royalties',None]);summary['A1'].font=Font(bold=True,size=13)
     latest=CollectionJob.objects.filter(source__in=['pocos','pocos_referencia'],status__in=['ok','partial']).first()
     summary.append(['Coleta de origem',f'#{latest.pk} em {timezone.localtime(latest.created_at):%d/%m/%Y %H:%M}' if latest else 'não identificada'])
     summary.append(['Planilha gerada em',timezone.localtime().strftime('%d/%m/%Y %H:%M')])

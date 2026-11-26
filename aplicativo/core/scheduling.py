@@ -80,4 +80,4 @@ def start_scheduler():
             try:tick()
             except Exception:logging.getLogger(__name__).exception('Falha ao verificar agenda local')
             threading.Event().wait(30)
-    threading.Thread(target=loop,name='cartogeo-agenda',daemon=True).start()
+    threading.Thread(target=loop,name='automac-agenda',daemon=True).start()

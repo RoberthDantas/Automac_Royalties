@@ -1,4 +1,4 @@
-# Funcionalidades da CartoGeo 0.5.0
+# Funcionalidades do Automac_Royalties 0.5.0
 
 Guia completo: menu "Guia de uso" ou documentacao/GUIA_COMPLETO.md. Novidades: documentacao/NOTAS_0.5.0.md e NOTAS_0.4.2.md.
 

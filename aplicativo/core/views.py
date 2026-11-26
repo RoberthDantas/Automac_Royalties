@@ -246,7 +246,7 @@ def export_csv(request):
     response['Content-Disposition']='attachment; filename="oportunidades.csv"';return response
 
 @login_required
-def help_page(request):return render(request,'core/help.html',{'title':'Guia de uso da CartoGeo'})
+def help_page(request):return render(request,'core/help.html',{'title':'Guia de uso do Automac_Royalties'})
 
 @login_required
 def briefing(request,pk):
