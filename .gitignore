@@ -5,3 +5,6 @@ __pycache__/
 *.pyc
 dist/
 *.sqlite3
+
+# Relatório com aba de contatos pessoais: fica só no Drive
+Documentos/Relatorio_de_dados_*
