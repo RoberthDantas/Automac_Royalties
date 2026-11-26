@@ -5,6 +5,19 @@ poços e produção, radar de editais (PNCP, Querido Diário), funil de oportuni
 
 Autor e responsável: Roberth Dantas Gomes.
 
+## Telas
+
+Prints feitos com uma base de demonstração: municípios, valores e editais são fictícios.
+
+![Central de operação](docs/prints/01_central.png)
+
+| | |
+| --- | --- |
+| ![Radar de oportunidades](docs/prints/02_radar.png) | ![Royalties por município](docs/prints/03_royalties.png) |
+| Radar de oportunidades: editais e sinais com nota de relevância e prazo | Royalties por município: parcela até 5%, excedentes e total |
+| ![Funil comercial](docs/prints/04_funil.png) | ![Metas do trimestre](docs/prints/05_metas.png) |
+| Funil comercial: etapa e próxima ação de cada oportunidade | Metas do trimestre: abordagens, propostas e contratos |
+
 ## Como usar no Windows
 
 1. Copie esta pasta para `C:\Automac_Royalties` (fora do OneDrive ou Google Drive).
