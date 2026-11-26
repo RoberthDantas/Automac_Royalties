@@ -1,6 +1,6 @@
 # Automac_Royalties
 
-Aplicativo local para acompanhar royalties de petróleo dos municípios e organizar a prospecção comercial: royalties ANP,
+Aplicativo local para acompanhar royalties de petróleo de municípios e organizar a prospecção comercial: royalties ANP,
 poços e produção, radar de editais (PNCP, Querido Diário), funil de oportunidades e mensagens de abordagem.
 
 Autor e responsável: Roberth Dantas Gomes.
