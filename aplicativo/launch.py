@@ -69,6 +69,6 @@ if __name__=='__main__':
     start_scheduler()
     from waitress import serve
     from cartogeo.wsgi import application
-    print('\nCartoGeo Local: http://127.0.0.1:8765\nMantenha esta janela aberta. Para encerrar, pressione Ctrl+C.\n')
+    print('\nAutomac_Royalties: http://127.0.0.1:8765\nMantenha esta janela aberta. Para encerrar, pressione Ctrl+C.\n')
     threading.Timer(1.5,lambda:webbrowser.open('http://127.0.0.1:8765')).start()
     serve(application,host='127.0.0.1',port=8765,threads=4,max_request_body_size=28*1024*1024)

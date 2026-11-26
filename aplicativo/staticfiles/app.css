@@ -5,3 +5,5 @@
 .goal-line{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}.goal-line:last-of-type{border-bottom:0}.goal-bar{height:8px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:6px}.goal-bar span{display:block;height:100%;background:var(--blue);border-radius:99px;max-width:100%}.prospect-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}@media(max-width:640px){.goal-line{grid-template-columns:1fr}}
 .guide h2{margin-top:28px}.guide h2.guide-title{margin-top:0}.guide table{width:100%;border-collapse:collapse;margin:8px 0 16px}.guide th,.guide td{border-bottom:1px solid var(--border);padding:8px;text-align:left;vertical-align:top}.guide code{background:var(--bg);padding:1px 5px;border-radius:4px}.guide li{margin:4px 0}
 .danger,button.danger{background:#b3261e !important;color:#fff}.danger:hover{background:#8c1d18 !important}
+
+.brand-name{font-size:17px;font-weight:700;letter-spacing:-.3px;color:#1a3c76;word-break:break-all;text-align:center}
