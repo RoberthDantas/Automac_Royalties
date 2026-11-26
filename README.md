@@ -24,9 +24,6 @@ Prints feitos com uma base de demonstração: municípios, valores e editais sã
 2. Rode `01_INSTALAR.bat` uma vez e crie sua conta.
 3. Para abrir, rode `02_ABRIR.bat`. O app abre em `http://127.0.0.1:8766`.
 
-A porta 8766 e a pasta próprias deixam o Automac_Royalties rodar no mesmo computador que outra instalação do app
-original, sem conflito.
-
 ## Dados
 
 O banco fica em `aplicativo/dados/` e nunca entra no repositório (veja `.gitignore`). Para levar os dados de um
